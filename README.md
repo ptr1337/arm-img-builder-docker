@@ -1,4 +1,4 @@
-# arm-img-buider-docker
+# arm-img-builder-docker
 
 For easy building of the arm-images we have created a docker image without installing anything on its host system.
 You have the possibility to build the docker image yourself or download it from dockerhub.
@@ -27,7 +27,7 @@ https://docs.docker.com/get-docker/
 
 ### First clone the Github repo with the following command:
 
-`git clone https://github.com/ptTrR/arm-img-builder-docker.git && cd arm-img-builder-docker`
+`git clone https://github.com/ptTrR/arm-image-builder-docker.git && cd arm-img-builder-docker`
 
 ### Pulling and start the image from docker-hub:
 
