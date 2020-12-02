@@ -1,4 +1,4 @@
-# arm-img-builder-docker
+# arm-image-builder-docker
 
 For easy building of the arm-images we have created a docker image without installing anything on its host system.
 You have the possibility to build the docker image yourself or download it from dockerhub.
