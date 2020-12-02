@@ -8,7 +8,7 @@ The prebuilt docker images are available for the following architectures:
 
 Here you find the image on the docker-hub:
 
-pttrr/arm-img-builder
+[pttrr/arm-img-builder](https://hub.docker.com/repository/docker/pttrr/arm-img-builder)
 
 ## Installing docker and docker-compose
 
@@ -105,6 +105,6 @@ docker cp arm-img-builder:/build/path/to/image .
 
 ## Support
 
-For more infos watch at our Wiki or Github.
+For more infos watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or Github.
 
 Should you come across any bugs, feel free to either open an issue on GitHub or talk with us directly by joining our channel on Freenode; [`#debianarm-port`](irc://irc.freenode.net/#debianarm-port)
