@@ -5,7 +5,6 @@ You have the possibility to build the docker image yourself or download it from 
 The prebuilt docker images are available for the following architectures:
 * amd64
 * arm64
-* armv7
 
 Here you find the image on the docker-hub:
 
