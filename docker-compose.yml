@@ -1,20 +1,14 @@
-version: '3.3'
+version: '3'
 services:
   arm-img-builder:
 #    build: .  #uncomment for building
     image: pttrr/arm-img-builder:latest
-#    image: arm-img-builder
+    privileged: true
     cap_add:
     - SYS_ADMIN
     container_name: arm-img-builder
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        max_attempts: 3
     hostname: arm-img-builder
     network_mode: bridge
-    privileged: true
     tmpfs:
     - /tmp
     - /run

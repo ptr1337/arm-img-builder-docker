@@ -1,33 +1,27 @@
-FROM debian:buster-slim
+FROM ubuntu:20.04
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y  \
-    build-essential \
     ca-certificates \
     apt-transport-https \
-    wget \
+    build-essential \
     bison \
-    mc \
+    xz-utils \
+    bc \
     git \
+    sudo \
     dialog \
     patch \
-    zip \
-    bc \
-    nano \
-    libterm-readline-gnu-perl \
-    systemd \
-    systemd \
-    systemd-container \
-    debootstrap \
-    sudo \
-    binfmt-support \
-    procps \
-    dbus \
-    unzip \
-    qemu \
     dosfstools \
+    unzip \
+    zip \
+    qemu \
+    debootstrap \
     qemu-user-static \
     rsync \
+    nano \
+    systemd \
+    systemd-container \
     kmod \
     cpio \
     flex \
@@ -35,17 +29,16 @@ RUN apt-get update && \
     libncurses5-dev \
     parted \
     fakeroot \
+    udev \
     swig \
+    mc \
     aria2 \
     pv \
     toilet \
+    rsync \
     figlet \
     crossbuild-essential-arm64 \
     crossbuild-essential-armel \
-    udev \
-    unzip \
-    gcc-aarch64-linux-gnu \
-    gcc-arm-linux-gnueabi \
     distro-info-data \
     lsb-release \
     --no-install-recommends && \
@@ -62,7 +55,6 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
     /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
     /lib/systemd/system/systemd-update-utmp* && \
     mkdir build
-
 
 RUN git clone https://github.com/pyavitz/rpi-img-builder.git /build/rpi-img-builder
 

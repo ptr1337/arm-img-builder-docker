@@ -37,17 +37,15 @@ Change in the docker-compose.yml:
 ```
 #    build: .  #uncomment for building
     image: pttrr/arm-img-builder:latest
-#    image: arm-img-builder
 ```
 to:
 ```
     build: .  #uncomment for building
   #  image: pttrr/arm-img-builder:latest
-    image: arm-img-builder
 ```
 Then run:
 
-`docker-compose --compatibility up -d --build`
+`docker-compose up -d --build`
 
 ### Exec into the container:
 
@@ -63,11 +61,12 @@ If you started with the pulled image from docker-hub, its possible that the repo
 
 `git pull`
 
-## Example for building
+## Example for building a raspberry image
 
 After you got the container successfully running and exec into that you can run following commands:
+
+### Pulling latest Changes from Github
 ```
-cd repo and pull newest changes
 cd /build/rpi-img-builder/
 git pull
 ```
@@ -83,19 +82,19 @@ make dialogrc   # Set builder theme (optional)
 ### Building the kernel
 ```
 make kernel       #Pi4
-make rpi3-kernel #Pi3
+make rpi3-kernel  #Pi3
 make rpi-kernel   #Pi0
 ```
 ### Building the rootfs
 ```
-make rootfs (arm64)
+make rootfs  (arm64)
 make rootsv6 (armel)
 ```
 ### Building the bootable image
 ```
-make image             #Pi4
-make rpi3-image        #Pi3
-make rpi-image         #Pi0
+make image        #Pi4
+make rpi3-image   #Pi3
+make rpi-image    #Pi0
 ```
 ### Copying the image from the container to your host
 
@@ -105,6 +104,6 @@ docker cp arm-img-builder:/build/path/to/image .
 
 ## Support
 
-For more infos watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or Github.
+For more infos watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or [Github](https://github.com/pyavitz/rpi-img-builder).
 
 Should you come across any bugs, feel free to either open an issue on GitHub or talk with us directly by joining our channel on Freenode; [`#debianarm-port`](irc://irc.freenode.net/#debianarm-port)
