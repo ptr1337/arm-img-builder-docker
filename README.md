@@ -37,13 +37,13 @@ https://docs.docker.com/get-docker/
 Change in the docker-compose.yml:
 ```
 #    build: .  #uncomment for building
-    image: pttrr/arm-img-builder:latest
+    image: pttrr/arm-img-builder:devel
 #    image: arm-img-builder
 ```
 to:
 ```
     build: .  #uncomment for building
-  #  image: pttrr/arm-img-builder:latest
+  #  image: pttrr/arm-img-builder:devel
     image: arm-img-builder
 ```
 Then run:
