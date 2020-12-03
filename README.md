@@ -5,7 +5,6 @@ You have the possibility to build the docker image yourself or download it from 
 The prebuilt docker images are available for the following architectures:
 * amd64
 * arm64
-* armv7
 
 Here you find the image on the docker-hub:
 
@@ -37,14 +36,12 @@ https://docs.docker.com/get-docker/
 Change in the docker-compose.yml:
 ```
 #    build: .  #uncomment for building
-    image: pttrr/arm-img-builder:devel
-#    image: arm-img-builder
+    image: pttrr/arm-img-builder:latest
 ```
 to:
 ```
     build: .  #uncomment for building
-  #  image: pttrr/arm-img-builder:devel
-    image: arm-img-builder
+  #  image: pttrr/arm-img-builder:latest
 ```
 Then run:
 
@@ -64,7 +61,7 @@ If you started with the pulled image from docker-hub, its possible that the repo
 
 `git pull`
 
-## Example for building
+## Example for building a raspberry image
 
 After you got the container successfully running and exec into that you can run following commands:
 
@@ -107,6 +104,6 @@ docker cp arm-img-builder:/build/path/to/image .
 
 ## Support
 
-For more infos watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or Github.
+For more infos watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or [Github](https://github.com/pyavitz/rpi-img-builder).
 
 Should you come across any bugs, feel free to either open an issue on GitHub or talk with us directly by joining our channel on Freenode; [`#debianarm-port`](irc://irc.freenode.net/#debianarm-port)
