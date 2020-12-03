@@ -1,9 +1,8 @@
 version: '3'
 services:
   arm-img-builder:
-    build: .  #uncomment for building
-#    image: pttrr/arm-img-builder:devel
-    image: pttrr/arm-img-builder:devel
+#    build: .  #uncomment for building
+    image: pttrr/arm-img-builder:latest
     privileged: true
     cap_add:
     - SYS_ADMIN

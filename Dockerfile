@@ -39,7 +39,6 @@ RUN apt-get update && \
     figlet \
     crossbuild-essential-arm64 \
     crossbuild-essential-armel \
-    crossbuild-essential-armhf \
     distro-info-data \
     lsb-release \
     --no-install-recommends && \
