@@ -5,6 +5,7 @@ You have the possibility to build the docker image yourself or download it from 
 The prebuilt docker images are available for the following architectures:
 * amd64
 * arm64
+* armv7
 
 Here you find the image on the docker-hub:
 
@@ -47,7 +48,7 @@ to:
 ```
 Then run:
 
-`docker-compose --compatibility up -d --build`
+`docker-compose up -d --build`
 
 ### Exec into the container:
 
@@ -66,8 +67,9 @@ If you started with the pulled image from docker-hub, its possible that the repo
 ## Example for building
 
 After you got the container successfully running and exec into that you can run following commands:
+
+### Pulling latest Changes from Github
 ```
-cd repo and pull newest changes
 cd /build/rpi-img-builder/
 git pull
 ```
@@ -83,19 +85,19 @@ make dialogrc   # Set builder theme (optional)
 ### Building the kernel
 ```
 make kernel       #Pi4
-make rpi3-kernel #Pi3
+make rpi3-kernel  #Pi3
 make rpi-kernel   #Pi0
 ```
 ### Building the rootfs
 ```
-make rootfs (arm64)
+make rootfs  (arm64)
 make rootsv6 (armel)
 ```
 ### Building the bootable image
 ```
-make image             #Pi4
-make rpi3-image        #Pi3
-make rpi-image         #Pi0
+make image        #Pi4
+make rpi3-image   #Pi3
+make rpi-image    #Pi0
 ```
 ### Copying the image from the container to your host
 
