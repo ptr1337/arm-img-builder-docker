@@ -1,0 +1,3 @@
+[submodule "rpi-img-builder"]
+	path = rpi-img-builder
+	url = https://github.com/pyavitz/rpi-img-builder
