@@ -98,12 +98,6 @@ make image        #Pi4
 make rpi3-image   #Pi3
 make rpi-image    #Pi0
 ```
-### Copying the image from the container to your host
-
-```
-docker cp arm-img-builder:/build/path/to/image .
-```
-
 ## Support
 
 For more infos watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or [Github](https://github.com/pyavitz/rpi-img-builder).
