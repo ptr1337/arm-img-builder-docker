@@ -17,7 +17,6 @@ RUN   apt-get update \
         rsync \
         wget \
         lsof \
-        git \
         build-essential \
         bison \
         xz-utils \
@@ -32,6 +31,7 @@ RUN   apt-get update \
         procps \
         nano \
         unzip \
+        git \
         bc \
         sudo \
         dialog \
@@ -44,7 +44,6 @@ RUN   apt-get update \
         libncurses5-dev \
         fakeroot \
         swig \
-        mc \
         aria2 \
         pv \
         toilet \
