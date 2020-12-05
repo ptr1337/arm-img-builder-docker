@@ -64,7 +64,7 @@ The container is automatically downloading all his three repos from pyavitz who 
 
 If you started with the pulled image from docker-hub, its possible that the repos are not up-to-date, so just update them with:
 
-`git pull`
+`git submodule update --remote`
 
 ## Example for building a raspberry image
 
@@ -72,8 +72,8 @@ After you got the container successfully running and exec into that you can run 
 
 ### Pulling latest Changes from Github
 ```
-cd /build/rpi-img-builder/
-git pull
+cd /build
+git submodule update --remote
 ```
 
 ### Menu-Interface
