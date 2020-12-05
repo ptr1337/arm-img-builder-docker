@@ -1,3 +1,9 @@
 [submodule "rpi-img-builder"]
 	path = rpi-img-builder
 	url = https://github.com/pyavitz/rpi-img-builder
+[submodule "debian-image-builder"]
+	path = debian-image-builder
+	url = https://github.com/pyavitz/debian-image-builder
+[submodule "builddeb"]
+	path = builddeb
+	url = https://github.com/pyavitz/builddeb

@@ -1,66 +1,71 @@
-FROM ubuntu:20.04
+FROM debian:buster-slim
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y  \
-    ca-certificates \
-    apt-transport-https \
-    build-essential \
-    bison \
-    xz-utils \
-    bc \
-    git \
-    sudo \
-    dialog \
-    patch \
-    dosfstools \
-    unzip \
-    zip \
-    qemu \
-    debootstrap \
-    qemu-user-static \
-    rsync \
-    nano \
-    systemd \
-    systemd-container \
-    kmod \
-    cpio \
-    flex \
-    libssl-dev \
-    libncurses5-dev \
-    parted \
-    fakeroot \
-    udev \
-    swig \
-    mc \
-    aria2 \
-    pv \
-    toilet \
-    rsync \
-    figlet \
-    crossbuild-essential-arm64 \
-    crossbuild-essential-armel \
-    distro-info-data \
-    lsb-release \
-    --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
+ENV container docker
+ENV LC_ALL C
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN rm -rf /tmp/* /var/tmp/* /var/cache/apt/*.bin \
-    /var/lib/dpkg/*-old /var/cache/debconf/*-old
+ARG APT_OPTS="--no-install-recommends -o APT::Install-Suggests=0 -o Acquire::Languages=none"
+
+RUN   apt-get update \
+    && apt-get install  -y $APT_OPTS \
+        ca-certificates \
+        apt-transport-https \
+        binfmt-support \
+        qemu-user-static \
+        qemu-system-x86 \
+        dosfstools \
+        rsync \
+        wget \
+        lsof \
+        git \
+        build-essential \
+        bison \
+        xz-utils \
+        dirmngr \
+        parted \
+        systemd \
+        systemd-sysv \
+        debootstrap \
+        kmod \
+        dbus \
+        udev \
+        procps \
+        nano \
+        unzip \
+        bc \
+        sudo \
+        dialog \
+        patch \
+        unzip \
+        rsync \
+        cpio \
+        flex \
+        libssl-dev \
+        libncurses5-dev \
+        fakeroot \
+        swig \
+        mc \
+        aria2 \
+        pv \
+        toilet \
+        figlet \
+        crossbuild-essential-arm64 \
+        crossbuild-essential-armel \
+        distro-info-data \
+        lsb-release \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*.bin \
+        /var/lib/dpkg/*-old /var/cache/debconf/*-old
 
 RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
-    /etc/systemd/system/*.wants/* \
-    /lib/systemd/system/local-fs.target.wants/* \
-    /lib/systemd/system/sockets.target.wants/*udev* \
-    /lib/systemd/system/sockets.target.wants/*initctl* \
-    /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
-    /lib/systemd/system/systemd-update-utmp* && \
-    mkdir build
+            /etc/systemd/system/*.wants/* \
+            /lib/systemd/system/local-fs.target.wants/* \
+            /lib/systemd/system/sockets.target.wants/*udev* \
+            /lib/systemd/system/sockets.target.wants/*initctl* \
+            /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
+            /lib/systemd/system/systemd-update-utmp* && \
+            mkdir build
 
-RUN git clone https://github.com/pyavitz/rpi-img-builder.git /build/rpi-img-builder
-
-RUN git clone https://github.com/pyavitz/debian-image-builder.git /build/debian-image-builder
-
-RUN git clone https://github.com/pyavitz/builddeb.git /build/kernelbuild
 
 WORKDIR /build
 

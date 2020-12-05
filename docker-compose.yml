@@ -1,11 +1,10 @@
-version: '3'
+version: '3.6'
 services:
   arm-img-builder:
 #    build: .  #uncomment for building
     image: pttrr/arm-img-builder:latest
+#    image: arm-img-builder
     privileged: true
-    cap_add:
-    - SYS_ADMIN
     container_name: arm-img-builder
     hostname: arm-img-builder
     network_mode: bridge
@@ -16,3 +15,4 @@ services:
     volumes:
     - /dev:/dev
     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    - ./:/build
