@@ -26,7 +26,7 @@ https://docs.docker.com/get-docker/
 
 ### Clone the whole thing (that enables you to use git submodule update --remote to get updates) :
 
-`git clone --recurse-submodules https://github.com/ptTrR/arm-image-builder-docker.git && cd arm-img-builder-docker`
+`git clone --recurse-submodules https://github.com/ptTrR/arm-image-builder-docker.git && cd arm-image-builder-docker`
 
 ### Pulling and start the image from docker-hub:
 
