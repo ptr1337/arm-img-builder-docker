@@ -24,24 +24,26 @@ https://docs.docker.com/get-docker/
 
 ## Running arm-img-builder
 
-### First clone the Github repo with the following command:
+### Clone the whole thing (that enables you to use git submodule update --remote to get updates) :
 
-`git clone https://github.com/ptTrR/arm-image-builder-docker.git && cd arm-img-builder-docker`
+`git clone --recurse-submodules https://github.com/ptTrR/arm-image-builder-docker.git && cd arm-img-builder-docker`
 
 ### Pulling and start the image from docker-hub:
 
 `docker-compose pull && docker-compose up -d`
 
-### building and start the docker container:
+### for building: 
 Change in the docker-compose.yml:
 ```
 #    build: .  #uncomment for building
     image: pttrr/arm-img-builder:latest
+#    image: arm-img-builder
 ```
 to:
 ```
     build: .  #uncomment for building
   #  image: pttrr/arm-img-builder:latest
+    image: arm-img-builder
 ```
 Then run:
 
