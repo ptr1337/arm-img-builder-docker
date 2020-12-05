@@ -22,6 +22,9 @@ You will find how to install docker and docker-compose for your operating system
 
 https://docs.docker.com/get-docker/
 
+Docker-Compose Installion for using the newest version
+https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl
+
 ## Running arm-img-builder
 
 ### Clone the whole thing (that enables you to use git submodule update --remote to get updates) :
@@ -98,7 +101,10 @@ make image        #Pi4
 make rpi3-image   #Pi3
 make rpi-image    #Pi0
 ```
+After building your image, you find it on your hosts work directory. 
+
 ## Support
+
 
 For more infos watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or [Github](https://github.com/pyavitz/rpi-img-builder).
 
