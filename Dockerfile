@@ -48,8 +48,6 @@ RUN   apt-get update \
         pv \
         toilet \
         figlet \
-        crossbuild-essential-arm64 \
-        crossbuild-essential-armel \
         distro-info-data \
         lsb-release \
         && apt-get clean \
