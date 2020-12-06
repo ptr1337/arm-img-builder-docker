@@ -13,6 +13,8 @@ RUN   apt-get update \
         binfmt-support \
         qemu-user-static \
         qemu-system-x86 \
+        gcc-aarch64-linux-gnu \
+        gcc-arm-linux-gnueabi \
         dosfstools \
         rsync \
         wget \
