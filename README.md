@@ -45,11 +45,13 @@ Change in the docker-compose.yml:
 ```
 #    build: .  #uncomment for building
     image: pttrr/arm-img-builder:cross
+#   image: pttrr/arm-img-builder:native # uncomment for native compiling
 ```
 to:
 ```
     build: .  #uncomment for building
   #  image: pttrr/arm-img-builder:cross
+  #  image: pttrr/arm-img-builder:native # uncomment for native compiling  
 ```
 Then run:
 
