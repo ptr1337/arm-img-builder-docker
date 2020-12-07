@@ -11,6 +11,8 @@ Here you find the image on the docker-hub:
 [pttrr/arm-img-builder](https://hub.docker.com/repository/docker/pttrr/arm-img-builder)
 
 We will provide two different tags: 
+> cross --> for crosscompiling on amd64
+> native --> for native compiling on arm64
 
 ## Installing docker and docker-compose
 
@@ -72,11 +74,6 @@ The container is automatically downloading all his three repos from pyavitz who 
 
 After you got the container successfully running and exec into that you can run following commands:
 
-### Pulling latest Changes from Github
-```
-cd /build
-git submodule update --remote
-```
 
 ### Menu-Interface
 ```
