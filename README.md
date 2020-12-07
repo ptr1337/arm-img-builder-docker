@@ -10,6 +10,8 @@ Here you find the image on the docker-hub:
 
 [pttrr/arm-img-builder](https://hub.docker.com/repository/docker/pttrr/arm-img-builder)
 
+We will provide two different tags: 
+
 ## Installing docker and docker-compose
 
 Docker and docker-compose are for following operating systems available:
@@ -31,6 +33,9 @@ https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry
 
 `git clone --recurse-submodules https://github.com/ptTrR/arm-image-builder-docker.git && cd arm-image-builder-docker && git submodule update --remote`
 
+### For updating:
+`git submodule update --remote`
+
 ### Pulling and start the image from docker-hub:
 
 `docker-compose pull && docker-compose up -d`
@@ -39,14 +44,12 @@ https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry
 Change in the docker-compose.yml:
 ```
 #    build: .  #uncomment for building
-    image: pttrr/arm-img-builder:latest
-#    image: arm-img-builder
+    image: pttrr/arm-img-builder:cross
 ```
 to:
 ```
     build: .  #uncomment for building
-  #  image: pttrr/arm-img-builder:latest
-    image: arm-img-builder
+  #  image: pttrr/arm-img-builder:cross
 ```
 Then run:
 
@@ -62,9 +65,6 @@ The container is automatically downloading all his three repos from pyavitz who 
 * debian-image-builder is located at /build/debian-img-builder
 * Native-Kernel-Compiler is located at /build/kernelbuild
 
-If you started with the pulled image from docker-hub, its possible that the repos are not up-to-date, so just update them with:
-
-`git submodule update --remote`
 
 ## Example for building a raspberry image
 
