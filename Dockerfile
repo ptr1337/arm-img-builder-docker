@@ -4,11 +4,10 @@ ENV container docker
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN sed -i 's/# deb/deb/g' /etc/apt/sources.list
-
-
-RUN   apt-get update \
-    && apt-get install  -y --no-install-recommends \
+RUN set -x && \ 
+    sed -i 's/# deb/deb/g' /etc/apt/sources.list && \ 
+    apt-get update \
+        && apt-get install  -y --no-install-recommends \
         ca-certificates \
         apt-transport-https \
         binfmt-support \
@@ -53,6 +52,7 @@ RUN   apt-get update \
         crossbuild-essential-arm64 \
         crossbuild-essential-armel \
         gcc-arm-none-eabi \
+        gcc-aarch64-linux-gnu \
         distro-info-data \
         lsb-release \
         python \
@@ -64,12 +64,10 @@ RUN   apt-get update \
         libfdt-dev \
         device-tree-compiler \
         && apt-get clean \
-        && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN     cd /lib/systemd/system/sysinit.target.wants/ \
-        && ls | grep -v systemd-tmpfiles-setup | xargs rm -f $1
-
-RUN     rm -f /lib/systemd/system/multi-user.target.wants/* \
+        && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \ 
+    cd /lib/systemd/system/sysinit.target.wants/ \
+        && ls | grep -v systemd-tmpfiles-setup | xargs rm -f $1 && \ 
+    rm -f /lib/systemd/system/multi-user.target.wants/* \
         /etc/systemd/system/*.wants/* \
         /lib/systemd/system/local-fs.target.wants/* \
         /lib/systemd/system/sockets.target.wants/*udev* \
