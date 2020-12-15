@@ -3,6 +3,7 @@
 For easy building of the arm-images we have created a docker image without installing anything on its host system.
 You have the possibility to build the docker image yourself or download it from dockerhub.
 The prebuilt docker images are available for the following architectures:
+
 * amd64
 * arm64
 
@@ -11,7 +12,7 @@ Here you find the image on the docker-hub:
 [pttrr/arm-img-builder](https://hub.docker.com/repository/docker/pttrr/arm-img-builder)
 
 We will provide two different tags: 
-> cross --> for crosscompiling on amd64
+> cross --> for cross compiling on amd64 and arm64
 > native --> for native compiling on arm64
 
 ## Installing docker and docker-compose
@@ -26,23 +27,25 @@ You will find how to install docker and docker-compose for your operating system
 
 https://docs.docker.com/get-docker/
 
-Docker-Compose Installion for using the newest version
-https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl
+If you got problems using docker-compose, try installing it with pip:
 
-## Running arm-img-builder
+`sudo pip3 -v install docker-compose`
 
-### Clone the whole thing :
+
+## Running the container
+
+### Clone the whole thing
 
 `git clone --recurse-submodules https://github.com/ptTrR/arm-image-builder-docker.git && cd arm-image-builder-docker && git submodule update --remote`
 
-### For updating:
+### Updating submodules
 `git submodule update --remote`
 
-### Pulling and start the image from docker-hub:
+### Pulling and start the image from docker-hub
 
 `docker-compose pull && docker-compose up -d`
 
-### for building: 
+### Building the container
 Change in the docker-compose.yml:
 ```
 #    build: .  #uncomment for building
@@ -52,59 +55,50 @@ Change in the docker-compose.yml:
 to:
 ```
     build: .  #uncomment for building
-  #  image: pttrr/arm-img-builder:cross
+    image: pttrr/arm-img-builder:cross
   #  image: pttrr/arm-img-builder:native # uncomment for native compiling  
 ```
 Then run:
 
 `docker-compose up -d --build`
 
-### Exec into the container:
+### Exec into the container
 
 `docker exec -it arm-img-builder bash`
 
-The container is automatically downloading all his three repos from pyavitz who is providing the building files for:
+You can use the container for building:
 
-* rpi-img-builder is located at /build/rpi-img-builder
-* debian-image-builder is located at /build/debian-img-builder
-* Native-Kernel-Compiler is located at /build/kernelbuild
+* [rpi-img-builder](https://github.com/pyavitz/rpi-img-builder) is located at /build/rpi-img-builder
+* [debian-image-builder](https://github.com/pyavitz/debian-image-builder) is located at /build/debian-img-builder
+* [Native-Kernel-Compiler](https://github.com/pyavitz/builddeb) is located at /build/kernelbuild
 
+## Usage of the containers builder:
 
-## Example for building a raspberry image
+Just take watch at our [Wiki](https://wiki.arm-image-builder.xyz) 
 
-After you got the container successfully running and exec into that you can run following commands:
+## Maintenance and Troubleshooting
 
+### Clearing up the cache and data
 
-### Menu-Interface
-```
-make config     # Create user data file (Foundation Kernel)
-make mlconfig   # Create user data file (Mainline Kernel)
-make menu       # Open menu interface
-make dialogrc   # Set builder theme (optional)
-```
+For clearing up your directory and builded cache in the container you can use following commands:
 
-### Building the kernel
 ```
-make kernel       #Pi4
-make rpi3-kernel  #Pi3
-make rpi-kernel   #Pi0
+make cleanup
+make purge
+make purge-all
 ```
-### Building the rootfs
+### Clearing docker cache, containers, images, and volumes
+
+If you want to clear up your full docker system run following commands:
+
 ```
-make rootfs  (arm64)
-make rootsv6 (armel)
+docker system prune -a
+docker system prune --volumes
 ```
-### Building the bootable image
-```
-make image        #Pi4
-make rpi3-image   #Pi3
-make rpi-image    #Pi0
-```
-After building your image, you find it on your hosts work directory. 
 
 ## Support
 
 
-For more infos watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or [Github](https://github.com/pyavitz/rpi-img-builder).
+For more infos watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or [Github](https://github.com/pyavitz).
 
 Should you come across any bugs, feel free to either open an issue on GitHub or talk with us directly by joining our channel on Freenode; [`#debianarm-port`](irc://irc.freenode.net/#debianarm-port)
