@@ -1,7 +1,7 @@
 # arm-image-builder-docker
 
 For easy building of the arm-images we have created a docker image without installing anything on its host system.
-You have the possibility to build the docker image yourself or download it from dockerhub.
+You have the possibility to build the docker image yourself or download it from docker hub.
 The prebuilt docker images are available for the following architectures:
 
 * amd64
@@ -72,7 +72,7 @@ You can use the container for building:
 * [debian-image-builder](https://github.com/pyavitz/debian-image-builder) is located at /build/debian-img-builder
 * [Native-Kernel-Compiler](https://github.com/pyavitz/builddeb) is located at /build/kernelbuild
 
-## Usage of the containers builder:
+## Usage of the container's builder:
 
 Just take watch at our [Wiki](https://wiki.arm-image-builder.xyz) 
 
@@ -80,7 +80,7 @@ Just take watch at our [Wiki](https://wiki.arm-image-builder.xyz)
 
 ### Clearing up the cache and data
 
-For clearing up your directory and builded cache in the container you can use following commands:
+For clearing up your directory and built cache in the container you can use the following commands:
 
 ```
 make cleanup
@@ -89,7 +89,7 @@ make purge-all
 ```
 ### Clearing docker cache, containers, images, and volumes
 
-If you want to clear up your full docker system run following commands:
+If you want to clear up your full docker system run the following commands:
 
 ```
 docker system prune -a
@@ -99,6 +99,6 @@ docker system prune --volumes
 ## Support
 
 
-For more infos watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or [Github](https://github.com/pyavitz).
+For more information watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or [GitHub](https://github.com/pyavitz).
 
 Should you come across any bugs, feel free to either open an issue on GitHub or talk with us directly by joining our channel on Freenode; [`#debianarm-port`](irc://irc.freenode.net/#debianarm-port)
