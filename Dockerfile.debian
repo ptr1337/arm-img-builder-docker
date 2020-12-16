@@ -1,0 +1,73 @@
+FROM debian:buster-slim
+
+ENV container docker
+ENV LC_ALL C
+ENV DEBIAN_FRONTEND noninteractive
+
+ARG APT_OPTS="--no-install-recommends -o APT::Install-Suggests=0 -o Acquire::Languages=none"
+
+
+RUN echo "deb http://deb.debian.org/debian buster-backports main" >/etc/apt/sources.list.d/backports.list \
+    && echo 'APT::Default-Release "stable";' > /etc/apt/apt.conf \
+    && apt-get update \
+        && apt-get install  -y $APT_OPTS \
+        -t buster-backports \
+        ca-certificates \
+        apt-transport-https \
+        dosfstools \
+        binfmt-support \
+        build-essential \
+        rsync \
+        wget \
+        qemu \
+        qemu-user-static \
+        git \
+        lsof \
+        bison \
+        xz-utils \
+        dirmngr \
+        parted \
+        systemd \
+        systemd-sysv \
+        debootstrap \
+        kmod \
+        dbus \
+        udev \
+        procps \
+        nano \
+        unzip \
+        bc \
+        sudo \
+        dialog \
+        patch \
+        unzip \
+        rsync \
+        cpio \
+        flex \
+        fakeroot \
+        swig \
+        aria2 \
+        pv \
+        toilet \
+        figlet \
+        gcc-arm-none-eabi \
+        gcc-aarch64-linux-gnu \
+        lz4 \
+        lzop \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*.bin \
+        /var/lib/dpkg/*-old /var/cache/debconf/*-old
+
+RUN     rm -f /lib/systemd/system/multi-user.target.wants/* \
+            /etc/systemd/system/*.wants/* \
+            /lib/systemd/system/local-fs.target.wants/* \
+            /lib/systemd/system/sockets.target.wants/*udev* \
+            /lib/systemd/system/sockets.target.wants/*initctl* \
+            /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
+            /lib/systemd/system/systemd-update-utmp*
+
+WORKDIR /build
+
+VOLUME [ "/sys/fs/cgroup" ]
+
+CMD ["/lib/systemd/systemd"]
