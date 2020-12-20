@@ -1,84 +1,55 @@
 FROM ubuntu:20.04
 
-ENV container docker
-ENV LC_ALL C
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN set -x && \ 
-    sed -i 's/# deb/deb/g' /etc/apt/sources.list && \ 
-    apt-get update \
-        && apt-get install  -y --no-install-recommends \
-        ca-certificates \
-        apt-transport-https \
-        binfmt-support \
-        qemu \
-        qemu-user-static \
-        qemu-system-x86 \
-        dosfstools \
-        rsync \
-        wget \
-        lsof \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive  apt-get install -y --no-install-recommends \
         build-essential \
-        bison \
-        xz-utils \
-        dirmngr \
-        parted \
-        systemd \
-        systemd-sysv \
-        debootstrap \
-        kmod \
-        dbus \
-        udev \
-        procps \
-        nano \
-        unzip \
-        git \
-        bc \
-        sudo \
-        dialog \
-        patch \
-        unzip \
-        rsync \
-        cpio \
-        flex \
-        libssl-dev \
-        libncurses5-dev \
-        fakeroot \
-        swig \
-        aria2 \
-        pv \
-        toilet \
-        figlet \
         crossbuild-essential-arm64 \
         crossbuild-essential-armel \
-        gcc-arm-none-eabi \
-        gcc-aarch64-linux-gnu \
+        cmake \
+        git \
+        ca-certificates \
+        apt-transport-https \
+        curl \
         distro-info-data \
         lsb-release \
-        python \
-        python-dev \
-        python3-distutils \
-        python3-dev \
+        build-essential \
+        patch \
+        wget \
+        binfmt-support \
+        dialog \
+        dbus \
+        qemu \
+        qemu-user-static \
+        zip \
+        unzip \
+        procps \
+        udev \
+        fakeroot \
+        parted \
+        debootstrap \
+        libncurses5-dev \
+        flex \
+        nano \
+        kmod \
+        libssl-dev \
+        rsync \
+        cpio \
+        aria2 \
+        pv \
+        bc \
+        bison \
+        swig \
+        dosfstools \
+        toilet \
+        figlet \
+        xz-utils \
         lz4 \
-        lzop \
-        libfdt-dev \
-        device-tree-compiler \
-        && apt-get clean \
-        && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \ 
-    cd /lib/systemd/system/sysinit.target.wants/ \
-        && ls | grep -v systemd-tmpfiles-setup | xargs rm -f $1 && \ 
-    rm -f /lib/systemd/system/multi-user.target.wants/* \
-        /etc/systemd/system/*.wants/* \
-        /lib/systemd/system/local-fs.target.wants/* \
-        /lib/systemd/system/sockets.target.wants/*udev* \
-        /lib/systemd/system/sockets.target.wants/*initctl* \
-        /lib/systemd/system/basic.target.wants/* \
-        /lib/systemd/system/anaconda.target.wants/* \
-        /lib/systemd/system/plymouth* \
-        /lib/systemd/system/systemd-update-utmp*
+        lsof \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 
-VOLUME [ "/sys/fs/cgroup" ]
+RUN git clone https://github.com/pyavitz/rpi-img-builder \
+    && git clone https://github.com/pyavitz/debian-image-builder
 
-CMD ["/lib/systemd/systemd"]
+CMD ["/bin/bash"]

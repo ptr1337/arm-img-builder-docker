@@ -1,18 +1,13 @@
 version: '3.6'
 services:
+
   arm-img-builder:
-#    build: .  #uncomment for building
-    image: pttrr/arm-img-builder:cross
-#    image: pttrr/arm-img-builder:native #uncomment for native compiling
+  #  build: .  #uncomment for building
+    image: pttrr/arm-img-builder:latest
     privileged: true
     container_name: arm-img-builder
-    hostname: arm-img-builder
-    network_mode: bridge
-    tmpfs:
-    - /tmp
-    - /run
-    - /run/lock
+    tty: true
     volumes:
-    - /dev:/dev
-    - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    - ./:/build
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /dev:/dev
+      - ./:/images
