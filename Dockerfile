@@ -5,6 +5,7 @@ RUN apt-get update && \
         build-essential \
         crossbuild-essential-arm64 \
         crossbuild-essential-armel \
+        gcc-arm-none-eabi \
         cmake \
         git \
         ca-certificates \
@@ -45,6 +46,12 @@ RUN apt-get update && \
         xz-utils \
         lz4 \
         lsof \
+        device-tree-compiler \
+        libfdt-dev \
+        python3-distutils \
+        lzop \
+        python \
+        python-dev \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
