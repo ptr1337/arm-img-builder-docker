@@ -1,11 +1,13 @@
 FROM ubuntu:20.04
-
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive  apt-get install -y --no-install-recommends \
+ARG DEBIAN_FRONTEND=noninteractive
+RUN     apt-get update \
+    &&  apt-get install -y --no-install-recommends \
         build-essential \
-        crossbuild-essential-arm64 \
-        crossbuild-essential-armel \
-        gcc-arm-none-eabi \
+        gcc-aarch64-linux-gnu \
+        g++-aarch64-linux-gnu \
+        gcc-arm-linux-gnueabihf \
+        g++-arm-linux-gnueabihf \
+        ccache \
         cmake \
         git \
         ca-certificates \
@@ -19,7 +21,6 @@ RUN apt-get update && \
         binfmt-support \
         dialog \
         dbus \
-        qemu \
         qemu-user-static \
         zip \
         unzip \
@@ -27,6 +28,8 @@ RUN apt-get update && \
         udev \
         fakeroot \
         parted \
+        debian-archive-keyring \
+        debian-keyring \
         debootstrap \
         libncurses5-dev \
         flex \
@@ -43,20 +46,19 @@ RUN apt-get update && \
         dosfstools \
         toilet \
         figlet \
+        pkg-config \
         xz-utils \
         lz4 \
+        u-boot-tools \
         lsof \
         device-tree-compiler \
         libfdt-dev \
-        python3-distutils \
+        python-distutils \
         lzop \
         python \
         python-dev \
-    && rm -rf /var/lib/apt/lists/*
-
+        && rm -rf /var/lib/apt/lists/*
 WORKDIR /build
-
-RUN git clone https://github.com/pyavitz/rpi-img-builder \
+RUN    git clone https://github.com/pyavitz/rpi-img-builder \
     && git clone https://github.com/pyavitz/debian-image-builder
-
 CMD ["/bin/bash"]
