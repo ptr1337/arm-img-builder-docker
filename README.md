@@ -9,11 +9,7 @@ The prebuilt docker images are available for the following architectures:
 
 Here you find the image on the docker-hub:
 
-[pttrr/arm-img-builder](https://hub.docker.com/repository/docker/pttrr/arm-img-builder)
-
-We will provide two different tags: 
-> cross --> for cross compiling on amd64 and arm64
-> native --> for native compiling on arm64
+[pttrr/arm-img-builder](https://hub.docker.com/r/pttrr/arm-img-builder)
 
 ## Installing docker and docker-compose
 
@@ -24,13 +20,9 @@ Docker and docker-compose are for following operating systems available:
 * Windows
 
 You will find how to install docker and docker-compose for your operating system here:
+**Follow these instructions acording your operating system and dont install it over "apt install" **
 
 https://docs.docker.com/get-docker/
-
-If you got problems using docker-compose, try installing it with pip:
-
-`sudo pip3 -v install docker-compose`
-
 
 ## Running the container
 
