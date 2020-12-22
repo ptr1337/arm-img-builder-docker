@@ -3,10 +3,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN     apt-get update \
     &&  apt-get install -y --no-install-recommends \
         build-essential \
-        gcc-aarch64-linux-gnu \
-        g++-aarch64-linux-gnu \
-        gcc-arm-linux-gnueabihf \
-        g++-arm-linux-gnueabihf \
+        crossbuild-essential-arm64 \
+        crossbuild-essential-armel \
         ccache \
         cmake \
         git \
@@ -53,7 +51,7 @@ RUN     apt-get update \
         lsof \
         device-tree-compiler \
         libfdt-dev \
-        python-distutils \
+        python3-distutils \
         lzop \
         python \
         python-dev \
