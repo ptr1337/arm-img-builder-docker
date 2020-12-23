@@ -1,7 +1,8 @@
-# arm-image-builder-docker
 
-For easy building of the arm-images we have created a docker image without installing anything on its host system.
-You have the possibility to build the docker image yourself or download it from docker hub.
+## Docker arm image builder
+
+For easily build your image we have created a docker image. The only thing you need to install is docker and docker-compose.
+You have the possibility to build the docker image yourself or download the image from docker hub.
 The prebuilt docker images are available for the following architectures:
 
 * amd64
@@ -11,7 +12,12 @@ Here you find the image on the docker-hub:
 
 [pttrr/arm-img-builder](https://hub.docker.com/r/pttrr/arm-img-builder)
 
-## Installing docker and docker-compose
+We will provide two different tags: 
+
+> latest --> for cross compiling on amd64 or arm64
+> native --> for native compiling on arm64
+
+### Installing docker and docker-compose
 
 Docker and docker-compose are for following operating systems available:
 
@@ -20,57 +26,92 @@ Docker and docker-compose are for following operating systems available:
 * Windows
 
 You will find how to install docker and docker-compose for your operating system here:
-**Follow these instructions acording your operating system and dont install it over "apt install" **
 
 https://docs.docker.com/get-docker/
 
-## Running the container
+### Install docker at raspberry or other arm devices
 
-### Clone the whole thing
+The official instruction for installing docker-compose on arm devices isnt working sometimes. 
 
-`git clone --recurse-submodules https://github.com/ptTrR/arm-image-builder-docker.git && cd arm-image-builder-docker && git submodule update --remote`
+You can follow this guide for the installation:
+https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl
 
-### Updating submodules
-`git submodule update --remote`
+## Usage
 
-### Pulling and start the image from docker-hub
+### Clone my repo
 
-`docker-compose pull && docker-compose up -d`
-
-### Building the container
-Change in the docker-compose.yml:
 ```
-#    build: .  #uncomment for building
-    image: pttrr/arm-img-builder:cross
-#   image: pttrr/arm-img-builder:native # uncomment for native compiling
+git clone https://github.com/ptTrR/arm-img-builder-docker
 ```
-to:
+or create the docker-compose.yml:
+
 ```
-    build: .  #uncomment for building
-    image: pttrr/arm-img-builder:cross
-  #  image: pttrr/arm-img-builder:native # uncomment for native compiling  
+version: '3.6'
+services:
+
+  arm-img-builder:
+  #  build: .  #uncomment for building 
+    image: pttrr/arm-img-builder:latest 
+  #  image: pttrr/arm-img-builder:native #uncomment for native compiling
+    privileged: true
+    container_name: arm-img-builder
+    tty: true
+    restart: always
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /dev:/dev
+      - ./:/images
 ```
-Then run:
+#### Change the image tag to your needs. 
 
-`docker-compose up -d --build`
+**:latest is for cross compiling on your amd64 and arm64
+:native is for native compiling on arm64**
 
-### Exec into the container
+### Pulling and start the container
 
-`docker exec -it arm-img-builder bash`
+```
+docker-compose pull && docker-compose up -d
+```
+If your container is successfully started you have to exec into it:
+```
+docker exec -it arm-img-builder bash
+```
+### Docker-Helper
 
-You can use the container for building:
+We also created a "docker-helper" which is aimed for guys which not using docker that often or never used it. 
+Just check this link:
+https://wiki.arm-image-builder.xyz/en/docker-helper
+
+### Supported Builder
 
 * [rpi-img-builder](https://github.com/pyavitz/rpi-img-builder) is located at /build/rpi-img-builder
 * [debian-image-builder](https://github.com/pyavitz/debian-image-builder) is located at /build/debian-img-builder
-* [Native-Kernel-Compiler](https://github.com/pyavitz/builddeb) is located at /build/kernelbuild
 
-## Usage of the container's builder:
+## Usage inside the container
 
-Just take watch at our [Wiki](https://wiki.arm-image-builder.xyz) 
+Just run in the /build dir following commands:
+
+```
+make pull 	# Pulling latest updates from the builder
+make update # Updating scripts and the makefile
+make setup 	# The builder makefiles will be converted for docker-usage
+```
+Then enter in your wanted builder directory and follow the commands which you will find here:
+
+[raspberry-image-builder](https://wiki.arm-image-builder.xyz/en/Raspberry)
+[debian-image-builder](https://wiki.arm-image-builder.xyz/en/Debian)
+
+## Moving image to the host system
+When your image built, you just have to move your to the /image directory, for example:
+```
+mv *.img.xz /images
+```
+
+Then you will find the image where you started the docker-compose. 
 
 ## Maintenance and Troubleshooting
 
-### Clearing up the cache and data
+### Cleanup
 
 For clearing up your directory and built cache in the container you can use the following commands:
 
@@ -79,17 +120,12 @@ make cleanup
 make purge
 make purge-all
 ```
-### Clearing docker cache, containers, images, and volumes
+### Clearing the complete docker system
 
-If you want to clear up your full docker system run the following commands:
-
-```
-docker system prune -a
-docker system prune --volumes
-```
+1. Stop your running container with `docker stop arm-img-builder` 
+2. Then run `docker system prune -a --volumes`
 
 ## Support
-
 
 For more information watch at our [Wiki](https://wiki.arm-image-builder.xyz/) or [GitHub](https://github.com/pyavitz).
 
