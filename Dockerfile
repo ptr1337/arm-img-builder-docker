@@ -56,6 +56,7 @@ RUN     apt-get update \
         python \
         python-dev \
         dirmngr \
+        u-boot-tools \
         && rm -rf /var/lib/apt/lists/*
  
 WORKDIR /build
