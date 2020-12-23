@@ -56,6 +56,7 @@ RUN     apt-get update \
         libstdc++-arm-none-eabi-newlib \ 
         qemu-user-static \
         zip \
+	u-boot-tools \
 	&& rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
