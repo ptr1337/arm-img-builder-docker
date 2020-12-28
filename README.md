@@ -37,6 +37,14 @@ The official instruction for installing docker-compose on arm devices isnt worki
 You can follow this guide for the installation:
 https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl
 
+### Torubleshooting at docker
+If you got some problems at using for compiling the image you should install the following on your host system:
+
+```
+apt install qemu-user-static #debian/ubuntu
+
+yay -S qemu-user-static #arch and other distros
+```
 ## Usage
 
 ### Clone my repo
@@ -90,7 +98,7 @@ https://wiki.arm-image-builder.xyz/en/docker-helper
 
 ## Usage inside the container
 
-Just run in the /build dir following commands:
+Just run in the /build dir following commands (mostly they should do the commands if enterying the container but for going sure):
 
 ```
 make pull 	# Pulling latest updates from the builder
