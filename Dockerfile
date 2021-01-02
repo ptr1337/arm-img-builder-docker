@@ -29,7 +29,7 @@ RUN     apt-get update \
         flex \
         nano \
         sudo \
-        uboot-tools \
+        u-boot-tools \
         kmod \
         libssl-dev \
         rsync \
@@ -65,4 +65,4 @@ RUN     git clone https://github.com/pyavitz/rpi-img-builder \
      && mkdir -p docker \
      && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/pull \
 
-CMD     ["make" "pull" "/bin/bash"]
+CMD     ["/bin/bash"]
