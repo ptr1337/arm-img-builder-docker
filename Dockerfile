@@ -1,27 +1,23 @@
-  GNU nano 5.4                                                                                                                                                                            Dockerfile                                                                                                                                                                            Modified  
-FROM ubuntu:20.04
+FROM    ubuntu:20.04
 
 RUN     apt-get update \
      && DEBIAN_FRONTEND=noninteractive  apt-get install -y --no-install-recommends \
+        apt-transport-https \
         build-essential \
         crossbuild-essential-arm64 \
         crossbuild-essential-armel \
         gcc-arm-none-eabi \
+        gcc-aarch64-linux-gnu \
         cmake \
         git \ 
         ca-certificates \
-        apt-transport-https \
-        curl \
-        distro-info-data \
-        lsb-release \
-        build-essential \
         patch \
         wget \
+        qemu \ 
+        qemu-user-static \
         binfmt-support \
         dialog \
         dbus \
-        qemu \ 
-        qemu-user-static \
         zip \
         unzip \  
         procps \
@@ -52,14 +48,21 @@ RUN     apt-get update \
         device-tree-compiler \
         libfdt-dev \
         python3-distutils \
+        python3-dev \
         lzop \
         python \
         python-dev \
-    &&  rm -rf /var/lib/apt/lists/*
+        curl \
+        distro-info-data \
+        lsb-release \
+        dirmngr \
+     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 
-RUN git clone https://github.com/pyavitz/rpi-img-builder \
-    && git clone https://github.com/pyavitz/debian-image-builder
+RUN     git clone https://github.com/pyavitz/rpi-img-builder \
+     && git clone https://github.com/pyavitz/debian-image-builder
+     && mkdir -p docker \
+     && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/pull \
 
-CMD ["/bin/bash"]
+CMD     ["make" "pull" "/bin/bash"]
