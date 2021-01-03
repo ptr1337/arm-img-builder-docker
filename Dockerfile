@@ -61,7 +61,7 @@ RUN     apt-get update \
 WORKDIR /build
 
 RUN     git clone https://github.com/pyavitz/rpi-img-builder \
-     && git clone https://github.com/pyavitz/debian-image-builder
+     && git clone https://github.com/pyavitz/debian-image-builder \
      && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
      && mkdir -p docker \
      && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/pull \
