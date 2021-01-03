@@ -1,30 +1,25 @@
 FROM    ubuntu:20.04
 
-ARG     DEBIAN_FRONTEND=noninteractive
 RUN     apt-get update \
-        && apt-get install -y --no-install-recommends \
+     && DEBIAN_FRONTEND=noninteractive  apt-get install -y --no-install-recommends \
+        apt-transport-https \
         build-essential \
         crossbuild-essential-arm64 \
         crossbuild-essential-armel \
         gcc-arm-none-eabi \
         gcc-aarch64-linux-gnu \
         cmake \
-        git \
+        git \ 
         ca-certificates \
-        apt-transport-https \
-        curl \
-        distro-info-data \
-        lsb-release \
         patch \
         wget \
+        qemu \ 
+        qemu-user-static \
         binfmt-support \
         dialog \
         dbus \
-        qemu \
-        qemu-system-x86 \
-        qemu-user-static \
         zip \
-        unzip \
+        unzip \  
         procps \
         udev \
         fakeroot \
@@ -33,6 +28,8 @@ RUN     apt-get update \
         libncurses5-dev \
         flex \
         nano \
+        sudo \
+        u-boot-tools \
         kmod \
         libssl-dev \
         rsync \
@@ -40,7 +37,7 @@ RUN     apt-get update \
         aria2 \
         pv \
         bc \
-        bison \
+        bison \ 
         swig \
         dosfstools \
         toilet \
@@ -55,19 +52,20 @@ RUN     apt-get update \
         lzop \
         python \
         python-dev \
+        curl \
+        distro-info-data \
+        lsb-release \
         dirmngr \
-        u-boot-tools \
-        && rm -rf /var/lib/apt/lists/*
- 
+     && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /build
- 
+
 RUN     git clone https://github.com/pyavitz/rpi-img-builder \
-        && git clone https://github.com/pyavitz/debian-image-builder \
-        && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
-        && mkdir -p docker \
-        && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/setup \
-        && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/pull \
-        && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/update \
-        && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/function
-        
-CMD     "make" "setup" "pull" "update" "setup" "help" && /bin/bash
+     && git clone https://github.com/pyavitz/debian-image-builder
+     && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
+     && mkdir -p docker \
+     && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/pull \
+     && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/update \
+     && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/function
+
+CMD     ["/bin/bash"]

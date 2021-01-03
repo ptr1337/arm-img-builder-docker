@@ -43,7 +43,7 @@ If you got some problems at using for compiling the image you should install the
 ```
 apt install qemu-user-static #debian/ubuntu
 
-yay -S qemu-user-static #arch and other distros
+yay -S qemu aarch64-linux-gnu-gcc qemu-arch-extra #arch and other distros
 ```
 ## Usage
 
