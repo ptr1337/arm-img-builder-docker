@@ -103,7 +103,6 @@ Just run in the /build dir following commands (mostly they should do the command
 ```
 make pull 	# Pulling latest updates from the builder
 make update # Updating scripts and the makefile
-make setup 	# The builder makefiles will be converted for docker-usage
 ```
 Then enter in your wanted builder directory and follow the commands which you will find here:
 
