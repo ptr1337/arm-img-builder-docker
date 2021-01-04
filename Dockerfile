@@ -56,7 +56,8 @@ RUN     apt-get update \
         distro-info-data \
         lsb-release \
         dirmngr \
-     && rm -rf /var/lib/apt/lists/*
+ && apt-get -qq clean \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /build
 
