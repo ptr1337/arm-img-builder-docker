@@ -60,7 +60,8 @@ RUN     apt-get update \
         systemd \
         systemd-sysv \
         systemd-container \
-	&& rm -rf /var/lib/apt/lists/*
+ && apt-get -qq clean \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /build
 
