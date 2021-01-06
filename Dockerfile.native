@@ -13,7 +13,7 @@ RUN     apt-get update \
         dosfstools \
         rsync \
         wget \
-	      sudo \
+	sudo \
         lsof \
         build-essential \
         bison \
@@ -60,7 +60,7 @@ RUN     apt-get update \
         libstdc++-arm-none-eabi-newlib \
         qemu-user-static \
         zip \
-	      u-boot-tools \
+	u-boot-tools \
         systemd \
         systemd-sysv \
         systemd-container \
