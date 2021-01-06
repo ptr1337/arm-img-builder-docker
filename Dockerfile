@@ -1,25 +1,29 @@
-FROM    ubuntu:20.04
+FROM  ubuntu:20.04
+
+ENV container docker
+ENV LC_ALL C
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN     apt-get update \
-     && DEBIAN_FRONTEND=noninteractive  apt-get install -y --no-install-recommends \
+     && apt-get install -y --no-install-recommends \
         apt-transport-https \
+        ca-certificates \
         build-essential \
         crossbuild-essential-arm64 \
         crossbuild-essential-armel \
         gcc-arm-none-eabi \
         gcc-aarch64-linux-gnu \
         cmake \
-        git \ 
-        ca-certificates \
+        git \
         patch \
         wget \
-        qemu \ 
+        qemu \
         qemu-user-static \
         binfmt-support \
         dialog \
         dbus \
         zip \
-        unzip \  
+        unzip \
         procps \
         udev \
         fakeroot \
@@ -37,7 +41,7 @@ RUN     apt-get update \
         aria2 \
         pv \
         bc \
-        bison \ 
+        bison \
         swig \
         dosfstools \
         toilet \
@@ -56,8 +60,8 @@ RUN     apt-get update \
         distro-info-data \
         lsb-release \
         dirmngr \
- && apt-get -qq clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+     && apt-get -qq clean \
+     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /build
 
