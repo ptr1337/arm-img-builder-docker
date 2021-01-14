@@ -65,6 +65,7 @@ RUN     apt-get update \
         distro-info-data \
         lsb-release \
         dirmngr \
+        openssh \
      && apt-get -qq clean \
      && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
