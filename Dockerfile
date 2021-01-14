@@ -32,6 +32,7 @@ RUN     apt-get update \
         debootstrap \
         libncurses5-dev \
         flex \
+  	   debian-archive-keyring \
         nano \
         sudo \
         u-boot-tools \
@@ -55,18 +56,16 @@ RUN     apt-get update \
         apt-utils \
         python3 \
         python3-dev \
-        python3-pip \
-        python3-distutils \      
-        python \
-        python-pip
+        python3-distutils \
+	   python \
         python-dev \
         lzop \
+        zstd \
         curl \
         distro-info-data \
         lsb-release \
         dirmngr \
-        openssh \
-     && apt-get -qq clean \
+     && apt-get -qq clean  \
      && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /build
