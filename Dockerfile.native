@@ -16,6 +16,7 @@ RUN     apt-get update \
 	sudo \
         lsof \
         build-essential \
+	debian-archive-keyring \
         bison \
         xz-utils \
         parted \
