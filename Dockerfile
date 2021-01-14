@@ -11,6 +11,7 @@ RUN     apt-get update \
         build-essential \
         crossbuild-essential-arm64 \
         crossbuild-essential-armel \
+        crossbuild-essential-armhf \
         gcc-arm-none-eabi \
         gcc-aarch64-linux-gnu \
         cmake \
