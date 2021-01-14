@@ -52,11 +52,15 @@ RUN     apt-get update \
         lsof \
         device-tree-compiler \
         libfdt-dev \
-        python3-distutils \
+        apt-utils \
+        python3 \
         python3-dev \
-        lzop \
+        python3-pip \
+        python3-distutils \      
         python \
+        python-pip
         python-dev \
+        lzop \
         curl \
         distro-info-data \
         lsb-release \
