@@ -32,7 +32,7 @@ RUN     apt-get update \
         debootstrap \
         libncurses5-dev \
         flex \
-  	   debian-archive-keyring \
+  	debian-archive-keyring \
         nano \
         sudo \
         u-boot-tools \
@@ -57,7 +57,7 @@ RUN     apt-get update \
         python3 \
         python3-dev \
         python3-distutils \
-	   python \
+	python \
         python-dev \
         lzop \
         zstd \
