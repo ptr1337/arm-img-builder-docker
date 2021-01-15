@@ -1,72 +1,54 @@
-FROM  ubuntu:20.04
+FROM debian:buster
 
-ENV container docker
-ENV LC_ALL C
-ENV DEBIAN_FRONTEND noninteractive
 
-RUN     apt-get update \
-     && apt-get install -y --no-install-recommends \
-        apt-transport-https \
-        ca-certificates \
-        build-essential \
-        crossbuild-essential-arm64 \
-        crossbuild-essential-armel \
-        crossbuild-essential-armhf \
-        gcc-arm-none-eabi \
-        gcc-aarch64-linux-gnu \
-        cmake \
-        git \
-        patch \
-        wget \
-        qemu \
-        qemu-user-static \
-        binfmt-support \
-        dialog \
-        dbus \
-        zip \
-        unzip \
-        procps \
-        udev \
-        fakeroot \
-        parted \
-        debootstrap \
-        libncurses5-dev \
-        flex \
-  	debian-archive-keyring \
-        nano \
-        sudo \
-        u-boot-tools \
-        kmod \
-        libssl-dev \
-        rsync \
-        cpio \
-        aria2 \
-        pv \
-        bc \
-        bison \
-        swig \
-        dosfstools \
-        toilet \
-        figlet \
-        xz-utils \
-        lz4 \
-        lsof \
-        device-tree-compiler \
-        libfdt-dev \
-        apt-utils \
-        python3 \
-        python3-dev \
-        python3-distutils \
-	python \
-        python-dev \
-        lzop \
-        zstd \
-        curl \
-        distro-info-data \
-        lsb-release \
-        dirmngr \
-     && apt-get -qq clean  \
-     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN set -ex \
+    && dpkg --add-architecture arm64                           \
+    && apt-get update                                          \
+    && apt-get install -y --no-install-recommends              \
+        autoconf                                               \
+        automake                                               \
+        autotools-dev                                          \
+        bc                                                     \
+        binfmt-support                                         \
+        binutils-multiarch                                     \
+        binutils-multiarch-dev                                 \
+        build-essential                                        \
+        cdbs                                                   \
+        cmake                                                  \
+        crossbuild-essential-arm64                             \
+        curl                                                   \
+        devscripts                                             \
+        equivs                                                 \
+        fakeroot                                               \
+        libtool                                                \
+        llvm                                                   \
+        meson                                                  \
+        multistrap                                             \
+        qemu                                                   \
+        qemu-user-static                                       \
+    && apt-get install -y libc6:arm64 libstdc++6:arm64         \
+    && apt-get clean                                           \
+    && rm -rf /tmp/* /var/tmp/*
+
+
+
+
+
+# Create symlinks for triple and set default CROSS_TRIPLE
+
+ENV CROSS_TRIPLE=aarch64-linux-gnu
+
+RUN mkdir -p /usr/x86_64-linux-gnu;                                                             \
+    for bin in /usr/bin/${CROSS_TRIPLE}-*; do                                                   \
+      if [ ! -f /usr/${CROSS_TRIPLE}/bin/$(basename $bin | sed "s/${CROSS_TRIPLE}-//") ]; then  \
+        ln -s $bin /usr/${CROSS_TRIPLE}/bin/$(basename $bin | sed "s/${CROSS_TRIPLE}-//");      \
+      fi;                                                                                       \
+    done;                                                                                       \
+    for bin in /usr/bin/${CROSS_TRIPLE}-*; do                                                   \
+      if [ ! -f /usr/${CROSS_TRIPLE}/bin/cc ]; then                                             \
+        ln -s gcc /usr/${CROSS_TRIPLE}/bin/cc;                                                  \
+      fi;                                                                                       \
+    done
 
 WORKDIR /build
 
