@@ -41,9 +41,9 @@ https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry
 If you got some problems at using for compiling the image you should install the following on your host system:
 
 ```
-apt install qemu-user-static #debian/ubuntu
+sudo apt install qemu-user-static #debian/ubuntu
 
-yay -S qemu aarch64-linux-gnu-gcc qemu-arch-extra #arch and other distros
+sudo pacman -S qemu aarch64-linux-gnu-gcc qemu-arch-extra #arch and other distros
 ```
 ## Usage
 
@@ -59,13 +59,13 @@ version: '3.6'
 services:
 
   arm-img-builder:
-  #  build: .  #uncomment for building 
+#    build: .  #uncomment for building 
     image: pttrr/arm-img-builder:latest 
-  #  image: pttrr/arm-img-builder:native #uncomment for native compiling
+#    image: pttrr/arm-img-builder:native #uncomment for native compiling
     privileged: true
     container_name: arm-img-builder
     tty: true
-    restart: always
+#    restart: always
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /dev:/dev
