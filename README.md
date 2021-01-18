@@ -44,6 +44,10 @@ If you got some problems at using for compiling the image you should install the
 sudo apt install qemu-user-static #debian/ubuntu
 
 sudo pacman -S qemu aarch64-linux-gnu-gcc qemu-arch-extra #arch and other distros
+
+if there are still problems run the follwing command:
+
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 ```
 ## Usage
 
