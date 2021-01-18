@@ -2,7 +2,7 @@ version: '3.6'
 services:
 
   arm-img-builder:
-#    build: .  #uncomment for building 
+    build: .  #uncomment for building 
     image: pttrr/arm-img-builder:latest 
 #    image: pttrr/arm-img-builder:native #uncomment for native compiling
     privileged: true
