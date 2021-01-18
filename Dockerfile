@@ -1,4 +1,4 @@
-FROM  ubuntu:focal
+FROM  debian:buster
 
 ENV   container docker
 ENV   LC_ALL C
@@ -58,7 +58,7 @@ RUN set -ex \
       apt-utils \
       python3-dev \
       python3-distutils \
-     # python-dev \
+      python-dev \
       lzop \
       zstd \
       curl \
