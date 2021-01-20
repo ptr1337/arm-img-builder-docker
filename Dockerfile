@@ -84,4 +84,4 @@ RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/update \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/function
 
-CMD  ["/bin/sh"]
+CMD  ["/bin/bash"]
