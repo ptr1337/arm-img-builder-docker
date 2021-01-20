@@ -1,12 +1,11 @@
 FROM debian:buster
 
-ENV container docker
-ENV LC_ALL C
-ENV DEBIAN_FRONTEND noninteractive
+FROM  debian:buster
 
-RUN set -ex \
-     && apt-get update \
-     && apt-get install -y --no-install-recommends \
+ENV   DEBIAN_FRONTEND noninteractive
+
+RUN apt-get -y update && \
+    apt-get -y install --no-install-recommends \
         ca-certificates \
         apt-transport-https \
         binfmt-support \
@@ -66,8 +65,7 @@ RUN set -ex \
         systemd \
         systemd-sysv \
         systemd-container \
-     && apt-get -qq clean \
-     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 
