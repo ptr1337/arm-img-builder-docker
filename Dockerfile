@@ -1,28 +1,30 @@
 FROM  debian:buster
 
-ENV   container docker
-ENV   LC_ALL C
 ENV   DEBIAN_FRONTEND noninteractive
 
-RUN set -ex \
-   && apt-get update \
-   && apt-get install -y --no-install-recommends \
+RUN apt-get -y update && \
+    apt-get -y install --no-install-recommends \
       apt-transport-https \
       ca-certificates \
       build-essential \
+      qemu-user-static \
+      binfmt-support \
+      zerofree \
+      bsdtar \
+      quilt \
+      coreutils \
       autoconf \
       automake \
       autotools-dev \
       crossbuild-essential-arm64 \
       crossbuild-essential-armel \
       crossbuild-essential-armhf \
+      grep \
       cmake \
+      xxd \
       git \
       patch \
       wget \
-      qemu \
-      qemu-user-static \
-      binfmt-support \
       dialog \
       dbus \
       zip \
@@ -50,6 +52,8 @@ RUN set -ex \
       dosfstools \
       toilet \
       figlet \
+      file \
+      libcap2-bin \
       xz-utils \
       lz4 \
       lsof \
@@ -66,8 +70,7 @@ RUN set -ex \
       distro-info-data \
       lsb-release \
       dirmngr \
-   && apt-get -qq clean  \
-   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 
@@ -81,4 +84,4 @@ RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/update \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/function
 
-CMD  ["/bin/bash"]
+CMD  ["/bin/sh"]
