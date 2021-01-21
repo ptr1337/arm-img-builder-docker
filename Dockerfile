@@ -1,6 +1,6 @@
-FROM  debian:buster
+FROM ubuntu:latest
 
-ENV   DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -y update && \
     apt-get -y install --no-install-recommends \
