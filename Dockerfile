@@ -1,5 +1,7 @@
-FROM ubuntu:latest
+FROM debian:bullsesye
 
+
+ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -y update \
@@ -59,12 +61,12 @@ RUN apt-get -y update \
       lzop \
       zstd \
       curl \
-      fdisk \
       distro-info-data \
       lsb-release \
       dirmngr \
-   && apt-get clean \
-   && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*.bin \
+    /var/lib/dpkg/*-old /var/cache/debconf/*-old
 
 WORKDIR /build
 
