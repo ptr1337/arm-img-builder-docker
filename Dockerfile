@@ -2,8 +2,8 @@ FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get -y update && \
-    apt-get -y install --no-install-recommends \
+RUN apt-get -y update \
+ && apt-get -y install --no-install-recommends \
       apt-transport-https \
       ca-certificates \
       build-essential \
@@ -64,6 +64,7 @@ RUN apt-get -y update && \
       distro-info-data \
       lsb-release \
       dirmngr \
+   && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
