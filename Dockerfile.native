@@ -1,9 +1,12 @@
-FROM ubuntu:latest
 
-ENV  DEBIAN_FRONTEND noninteractive
+FROM debian:bullseye
 
-RUN apt-get -y update && \
-    apt-get -y install --no-install-recommends \
+
+ENV LC_ALL C
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get -y update \
+ && apt-get -y install --no-install-recommends \
         ca-certificates \
         apt-transport-https \
         binfmt-support \
@@ -44,8 +47,6 @@ RUN apt-get -y update && \
         figlet \
         distro-info-data \
         lsb-release \
-        python \
-        python-dev \
         python3-distutils \
         python3-dev \
         lz4 \
@@ -69,7 +70,6 @@ WORKDIR /build
 
 RUN     git clone https://github.com/pyavitz/rpi-img-builder \
      && git clone https://github.com/pyavitz/debian-image-builder \
-     && git clone -b armhf https://github.com/pyavitz/rpi-img-builder.git armhf-rpi-img-builder \
      && git clone -b xfce https://github.com/pyavitz/rpi-img-builder.git xfce-rpi-img-builder \
      && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
      && mkdir -p docker \
