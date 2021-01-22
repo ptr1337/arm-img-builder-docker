@@ -59,6 +59,7 @@ RUN apt-get -y update \
         libstdc++-arm-none-eabi-newlib \
         qemu-user-static \
         zip \
+	fdisk \
 	u-boot-tools \
         systemd \
         systemd-sysv \
