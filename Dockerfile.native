@@ -64,13 +64,14 @@ RUN apt-get -y update \
         systemd \
         systemd-sysv \
         systemd-container \
-     && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*.bin \
+    /var/lib/dpkg/*-old /var/cache/debconf/*-old
 
 WORKDIR /build
 
 RUN     git clone https://github.com/pyavitz/rpi-img-builder \
      && git clone https://github.com/pyavitz/debian-image-builder \
-     && git clone -b xfce https://github.com/pyavitz/rpi-img-builder.git xfce-rpi-img-builder \
      && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
      && mkdir -p docker \
      && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/pull \
