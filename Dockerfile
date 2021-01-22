@@ -62,6 +62,8 @@ RUN apt-get -y update \
       zstd \
       curl \
       distro-info-data \
+      qemu \
+      fdisk \
       lsb-release \
       dirmngr \
     && apt-get clean \
