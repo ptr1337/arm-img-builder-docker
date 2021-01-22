@@ -1,4 +1,4 @@
-FROM debian:bullsesye
+FROM debian:bullseye
 
 
 ENV LC_ALL C
