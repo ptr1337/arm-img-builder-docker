@@ -9,7 +9,6 @@ RUN apt-get -y update \
       build-essential \
       qemu-user-static \
       binfmt-support \
-      bsdtar \
       coreutils \
       autoconf \
       automake \
