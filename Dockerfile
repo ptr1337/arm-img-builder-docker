@@ -9,19 +9,14 @@ RUN apt-get -y update && \
       build-essential \
       qemu-user-static \
       binfmt-support \
-      zerofree \
       bsdtar \
-      quilt \
       coreutils \
       autoconf \
       automake \
       autotools-dev \
       crossbuild-essential-arm64 \
       crossbuild-essential-armel \
-      crossbuild-essential-armhf \
-      grep \
       cmake \
-      xxd \
       git \
       patch \
       wget \
@@ -62,7 +57,6 @@ RUN apt-get -y update && \
       apt-utils \
       python3-dev \
       python3-distutils \
-      python-dev \
       lzop \
       zstd \
       curl \
@@ -76,7 +70,6 @@ WORKDIR /build
 
 RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && git clone https://github.com/pyavitz/debian-image-builder \
-   && git clone -b armhf https://github.com/pyavitz/rpi-img-builder.git armhf-rpi-img-builder \
    && git clone -b xfce https://github.com/pyavitz/rpi-img-builder.git xfce-rpi-img-builder \
    && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
    && mkdir -p docker \
