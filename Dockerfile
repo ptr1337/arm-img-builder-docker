@@ -66,6 +66,9 @@ RUN apt-get -y update \
       fdisk \
       lsb-release \
       dirmngr \
+      gcc-arm-none-eabi \
+      python \
+      python-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*.bin \
     /var/lib/dpkg/*-old /var/cache/debconf/*-old
