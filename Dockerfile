@@ -1,10 +1,23 @@
-FROM debian:bullseye-slim
+FROM debian:bullseye
+
 
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -y update \
  && apt-get -y install --no-install-recommends \
+      apt-transport-https \
+      ca-certificates \
+      build-essential \
+      qemu-user-static \
+      binfmt-support \
+      coreutils \
+      autoconf \
+      automake \
+      autotools-dev \
+      crossbuild-essential-arm64 \
+      crossbuild-essential-armel \
+      gcc-arm-none-eabi \
       cmake \
       git \
       patch \
@@ -46,8 +59,6 @@ RUN apt-get -y update \
       apt-utils \
       python3-dev \
       python3-distutils \
-      python \
-      python-dev \
       lzop \
       zstd \
       curl \
@@ -56,18 +67,8 @@ RUN apt-get -y update \
       fdisk \
       lsb-release \
       dirmngr \
-      gcc-arm-none-eabi \
-      apt-transport-https \
-      ca-certificates \
-      build-essential \
-      qemu-user-static \
-      binfmt-support \
-      coreutils \
-      autoconf \
-      automake \
-      autotools-dev \
-      crossbuild-essential-arm64 \
-      crossbuild-essential-armel \
+      python \
+      python-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*.bin \
     /var/lib/dpkg/*-old /var/cache/debconf/*-old
