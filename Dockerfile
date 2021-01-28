@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bullseye-slim
 
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
