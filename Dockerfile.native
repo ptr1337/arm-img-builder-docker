@@ -4,7 +4,7 @@ ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN 	apt-get -y update \
-    &&  apt-get -y install --no-install-recommends \
+     && apt-get -y install --no-install-recommends \
         ca-certificates \
         apt-transport-https \
         binfmt-support \
