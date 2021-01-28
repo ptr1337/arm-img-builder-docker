@@ -1,5 +1,4 @@
-FROM debian:bullseye
-
+FROM debian:bullseye-slim
 
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
@@ -54,6 +53,7 @@ RUN apt-get -y update \
         device-tree-compiler \
         binutils-arm-none-eabi \
         gcc-arm-none-eabi \
+	crossbuild-essential-arm64 \
         libnewlib-arm-none-eabi \
         libnewlib-dev \
         libstdc++-arm-none-eabi-newlib \
@@ -64,6 +64,9 @@ RUN apt-get -y update \
         systemd \
         systemd-sysv \
         systemd-container \
+	python \
+	python-dev \
+	
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*.bin \
     /var/lib/dpkg/*-old /var/cache/debconf/*-old
