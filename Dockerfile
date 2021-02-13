@@ -69,6 +69,7 @@ RUN apt-get -y update \
       dirmngr \
       python \
       python-dev \
+      btrfs-progs \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*.bin \
     /var/lib/dpkg/*-old /var/cache/debconf/*-old
