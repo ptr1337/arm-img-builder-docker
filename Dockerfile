@@ -1,5 +1,4 @@
-FROM debian:bullseye
-
+FROM debian:buster-slim
 
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
