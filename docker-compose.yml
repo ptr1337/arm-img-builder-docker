@@ -3,8 +3,8 @@ services:
 
   arm-img-builder:
 #    build: .  #uncomment for building 
-    image: pttrr/arm-img-builder:latest (for crosscompiling)
-#    image: pttrr/arm-img-builder:native (if building on a arm64 with docker)
+    image: pttrr/arm-img-builder:latest # for crosscompiling
+#    image: pttrr/arm-img-builder:native # if building on a arm64 with docker
     privileged: true
     container_name: arm-img-builder
     stdin_open: true
