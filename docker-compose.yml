@@ -9,7 +9,11 @@ services:
     container_name: arm-img-builder
     stdin_open: true
     tty: true
-#    restart: always
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /dev:/dev
