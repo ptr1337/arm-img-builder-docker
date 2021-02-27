@@ -76,6 +76,8 @@ WORKDIR /build
 
 RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && git clone https://github.com/pyavitz/debian-image-builder \
+   && git clone -b xfce https://github.com/pyavitz/rpi-img-builder xfce \
+   && git clone -b xfce https://github.com/pyavitz/rpi-img-builder armhf \
    && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
    && mkdir -p docker \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/update \
