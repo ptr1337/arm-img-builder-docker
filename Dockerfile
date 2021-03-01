@@ -1,15 +1,16 @@
 FROM ubuntu:focal
 
-ENV DEBIAN_FRONTEND noninteractive
-
+ARG DEBIAN_FRONTEND=noninteractive
+RUN dpkg --add-architecture i386
 RUN set -x \
-   && apt-get update && apt-get install -y --no-install-recommends  \
+   && apt-get update \
+   && apt-get install -y --no-install-recommends  \
       apt-transport-https \
       ca-certificates \
       build-essential \
-      qemu \
       qemu-user-static \
       binfmt-support \
+      systemd-container \
       coreutils \
       autoconf \
       automake \
@@ -24,11 +25,15 @@ RUN set -x \
       wget \
       dialog \
       dbus \
+      jq \
       p7zip-full \
       zip \
       unzip \
+      pkg-config \
       procps \
       udev \
+      uuid-dev \
+      uuid-runtime \
       fakeroot \
       parted \
       debootstrap \
@@ -70,7 +75,9 @@ RUN set -x \
       python \
       python-dev \
       btrfs-progs \
-   && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen en_US.UTF-8
 
 WORKDIR /build
 
