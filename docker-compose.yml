@@ -14,3 +14,4 @@ services:
     volumes:
       - ./:/images
       - /dev/loop*:/dev
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
