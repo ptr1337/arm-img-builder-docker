@@ -87,6 +87,8 @@ RUN set -x \
       libnewlib-dev \
       libstdc++-arm-none-eabi-newlib \
       u-boot-tools \
+      e2fsprogs \
+      kpartx 
    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
