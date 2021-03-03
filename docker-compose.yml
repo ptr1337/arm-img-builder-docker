@@ -2,19 +2,16 @@ version: '3.6'
 services:
 
   arm-img-builder:
-#    build: .  #uncomment for building 
+#    build: .  #uncomment for building
     image: pttrr/arm-img-builder:latest # for crosscompiling
 #    image: pttrr/arm-img-builder:native # if building on a arm64 with docker
     privileged: true
+    cap_add:
+      - MKNOD
+      - SYS_PTRACE
     container_name: arm-img-builder
-    stdin_open: true
     tty: true
-    privileged: true
-    tmpfs:
-      - /tmp
-      - /run
-      - /run/lock
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - /dev:/dev
       - ./:/images
+      - /dev:/dev
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro

@@ -1,10 +1,10 @@
 FROM ubuntu:focal
 
-ENV LC_ALL C
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get -y update \
-  && apt-get -y install --no-install-recommends \
+ARG DEBIAN_FRONTEND=noninteractive
+RUN dpkg --add-architecture i386
+RUN set -x \
+   && apt-get update \
+   && apt-get install -y --no-install-recommends  \
       apt-transport-https \
       ca-certificates \
       build-essential \
@@ -17,6 +17,7 @@ RUN apt-get -y update \
       autotools-dev \
       crossbuild-essential-arm64 \
       crossbuild-essential-armel \
+      crossbuild-essential-armhf \
       gcc-arm-none-eabi \
       cmake \
       git \
@@ -24,10 +25,15 @@ RUN apt-get -y update \
       wget \
       dialog \
       dbus \
+      jq \
+      p7zip-full \
       zip \
       unzip \
+      pkg-config \
       procps \
       udev \
+      uuid-dev \
+      uuid-runtime \
       fakeroot \
       parted \
       debootstrap \
@@ -63,21 +69,22 @@ RUN apt-get -y update \
       zstd \
       curl \
       distro-info-data \
-      qemu \
       fdisk \
       lsb-release \
       dirmngr \
       python \
       python-dev \
       btrfs-progs \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*.bin \
-    /var/lib/dpkg/*-old /var/cache/debconf/*-old
+      e2fsprogs \
+      kpartx 
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 
 RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && git clone https://github.com/pyavitz/debian-image-builder \
+   && git clone -b xfce https://github.com/pyavitz/rpi-img-builder xfce \
+   && git clone -b xfce https://github.com/pyavitz/rpi-img-builder armhf \
    && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
    && mkdir -p docker \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/update \

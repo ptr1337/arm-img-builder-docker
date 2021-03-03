@@ -1,22 +1,36 @@
+FROM debian:buster AS builder
+
+# Download QEMU, see https://github.com/docker/hub-feedback/issues/1261
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    apt-utils \
+  && rm -rf /var/lib/apt/lists/* \
+  && apt -qyy clean
+RUN export QEMU_USER_STATIC_LATEST_TAG=$(curl -s https://api.github.com/repos/multiarch/qemu-user-static/tags \
+        | grep 'name.*v[0-9]' | head -n 1 | cut -d '"' -f 4) && \
+    curl -SL "https://github.com/multiarch/qemu-user-static/releases/download/${QEMU_USER_STATIC_LATEST_TAG}/x86_64_qemu-aarch64-static.tar.gz" \
+        | tar xzv --directory /
+
 FROM debian:buster-slim
 
-ENV LC_ALL C
+COPY --from=builder /qemu-aarch64-static /usr/bin/
+
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get -y update \
-  && apt-get -y install --no-install-recommends \
+RUN set -x \
+   && apt-get update && apt-get install -y --no-install-recommends  \
       apt-transport-https \
       ca-certificates \
       build-essential \
-      qemu-user-static \
+      qemu \
       binfmt-support \
-      systemd-container \
       coreutils \
       autoconf \
       automake \
       autotools-dev \
-      crossbuild-essential-arm64 \
       crossbuild-essential-armel \
+      crossbuild-essential-armhf \
       gcc-arm-none-eabi \
       cmake \
       git \
@@ -24,6 +38,7 @@ RUN apt-get -y update \
       wget \
       dialog \
       dbus \
+      p7zip-full \
       zip \
       unzip \
       procps \
@@ -63,16 +78,20 @@ RUN apt-get -y update \
       zstd \
       curl \
       distro-info-data \
-      qemu \
       fdisk \
       lsb-release \
       dirmngr \
       python \
       python-dev \
       btrfs-progs \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/*.bin \
-    /var/lib/dpkg/*-old /var/cache/debconf/*-old
+      binutils-arm-none-eabi \
+      libnewlib-arm-none-eabi \
+      libnewlib-dev \
+      libstdc++-arm-none-eabi-newlib \
+      u-boot-tools \
+      e2fsprogs \
+      kpartx 
+   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 
