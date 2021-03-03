@@ -75,9 +75,9 @@ RUN set -x \
       python \
       python-dev \
       btrfs-progs \
+      e2fsprogs \
+      kpartx 
   && rm -rf /var/lib/apt/lists/*
-
-RUN locale-gen en_US.UTF-8
 
 WORKDIR /build
 
