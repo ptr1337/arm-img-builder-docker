@@ -76,7 +76,7 @@ RUN set -x \
       python-dev \
       btrfs-progs \
       e2fsprogs \
-      kpartx 
+      kpartx
    && apt-get update \
    && apt-get upgrade -y \
    && apt-get clean \
