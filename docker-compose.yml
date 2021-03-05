@@ -2,8 +2,10 @@ version: '3.6'
 services:
 
   arm-img-builder:
-    build: .  #uncomment for building
-#    image: pttrr/arm-img-builder:devel # for crosscompiling
+#    build:  #uncomment for building
+#      context: .
+#      dockerfile: Dockerfile.cross
+    image: pttrr/arm-img-builder # for crosscompiling
 #    image: pttrr/arm-img-builder:native # if building on a arm64 with docker
     privileged: true
     cap_add:
