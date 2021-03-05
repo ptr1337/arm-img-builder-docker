@@ -9,6 +9,7 @@ services:
     cap_add:
       - MKNOD
       - SYS_PTRACE
+      - SYS_ADMIN
     container_name: arm-img-builder
     tty: true
     volumes:
