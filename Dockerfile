@@ -91,7 +91,7 @@ RUN   apt-get update \
 WORKDIR /build
 
 RUN   git clone https://github.com/pyavitz/rpi-img-builder \
-      https://github.com/pyavitz/debian-image-builder \
+   && git clone https://github.com/pyavitz/debian-image-builder \
    && git clone -b xfce https://github.com/pyavitz/rpi-img-builder xfce \
    && git clone -b armhf https://github.com/pyavitz/rpi-img-builder armhf \
    && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
@@ -99,4 +99,4 @@ RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/update \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/function
 
-CMD  ["make update"]
+CMD  ["bash"]
