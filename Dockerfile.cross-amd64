@@ -30,6 +30,10 @@ RUN   apt-get update \
       gcc-arm-none-eabi \
       gcc-8-arm-linux-gnueabihf \
       g++-8-arm-linux-gnueabihf \
+      gcc-9-arm-linux-gnueabihf \
+      g++-9-arm-linux-gnueabihf \
+      gcc-10-arm-linux-gnueabihf \
+      g++-10-arm-linux-gnueabihf \
       libc6-dev-arm64-cross \
       libc6-dev-armhf-cross \
       libc6-dev-armel-cross \
