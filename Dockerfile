@@ -1,9 +1,8 @@
 FROM ubuntu:focal
 
 ARG DEBIAN_FRONTEND=noninteractive
-RUN dpkg --add-architecture i386
-RUN set -x \
-   && apt-get update \
+
+RUN   apt-get update \
    && apt-get install -y --no-install-recommends  \
       apt-transport-https \
       ca-certificates \
@@ -40,6 +39,7 @@ RUN set -x \
       libncurses5-dev \
       flex \
       debian-archive-keyring \
+      debian-keyring \
       nano \
       sudo \
       u-boot-tools \
@@ -76,21 +76,9 @@ RUN set -x \
       python-dev \
       btrfs-progs \
       e2fsprogs \
-      kpartx
-   && apt-get update \
-   && apt-get upgrade -y \
-   && apt-get clean \
-   && rm -rf /var/lib/apt/lists/* \
-   && rm -rf /tmp/* /var/tmp/* /var/cache/apt/*.bin \
-   /var/lib/dpkg/*-old /var/cache/debconf/*-old && \
-   && rm -rf /lib/systemd/system/multi-user.target.wants/* \
-            /etc/systemd/system/*.wants/* \
-            /lib/systemd/system/local-fs.target.wants/* \
-            /lib/systemd/system/sockets.target.wants/*udev* \
-            /lib/systemd/system/sockets.target.wants/*initctl* \
-            /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
-            /lib/systemd/system/systemd-update-utmp*
-
+      kpartx \
+   && rm -rf /var/lib/apt/lists/* 
+   
 WORKDIR /build
 
 RUN   git clone https://github.com/pyavitz/rpi-img-builder \
