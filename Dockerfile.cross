@@ -10,6 +10,8 @@ RUN   apt-get update \
       apt-transport-https \
       ca-certificates \
       build-essential \
+      gcc-10 \
+      gcc-8 \
       qemu-user-static \
       binfmt-support \
       systemd-container \
