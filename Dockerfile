@@ -1,9 +1,9 @@
 FROM ubuntu:focal
 
-ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN dpkg --add-architecture i386
+
 
 RUN   apt-get update \
    && apt-get install -y --no-install-recommends  \
@@ -49,6 +49,7 @@ RUN   apt-get update \
       flex \
       debian-keyring \
       debian-archive-keyring \
+      debian-keyring \
       nano \
       sudo \
       u-boot-tools \
@@ -86,7 +87,7 @@ RUN   apt-get update \
       btrfs-progs \
       e2fsprogs \
       kpartx \
-  &&  rm -rf /var/lib/apt/lists/*
+   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 

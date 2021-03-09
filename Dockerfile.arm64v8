@@ -49,6 +49,7 @@ RUN set -x \
       libncurses5-dev \
       flex \
       debian-archive-keyring \
+      debian-keyring \
       nano \
       sudo \
       u-boot-tools \
@@ -90,8 +91,8 @@ RUN set -x \
       libstdc++-arm-none-eabi-newlib \
       u-boot-tools \
       e2fsprogs \
-      kpartx 
-   && rm -rf /var/lib/apt/lists/*
+      kpartx \
+   && rm -rf /var/lib/apt/lists/* 
 
 WORKDIR /build
 
