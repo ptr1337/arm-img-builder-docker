@@ -12,44 +12,70 @@ RUN export QEMU_USER_STATIC_LATEST_TAG=$(curl -s https://api.github.com/repos/mu
     curl -SL "https://github.com/multiarch/qemu-user-static/releases/download/${QEMU_USER_STATIC_LATEST_TAG}/x86_64_qemu-aarch64-static.tar.gz" \
         | tar xzv --directory /
 
-FROM debian:buster-slim
+FROM ubuntu:focal
 
 COPY --from=builder /qemu-aarch64-static /usr/bin/
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN set -x \
-   && apt-get update && apt-get install -y --no-install-recommends  \
+RUN dpkg --add-architecture i386
+
+RUN   apt-get update \
+   && apt-get install -y --no-install-recommends \
       apt-transport-https \
       ca-certificates \
       build-essential \
+      gcc-10 \
+      gcc-8 \
       qemu \
       binfmt-support \
+      systemd-container \
       coreutils \
       autoconf \
       automake \
       autotools-dev \
-      crossbuild-essential-armel \
-      crossbuild-essential-armhf \
+#      crossbuild-essential-arm64 \
+#      crossbuild-essential-armel \
+#      crossbuild-essential-armhf \
+#      gcc-10-aarch64-linux-gnu \
+#      g++-10-aarch64-linux-gnu \
+#      gcc-9-aarch64-linux-gnu \
+#      g++-9-aarch64-linux-gnu \
+#      gcc-8-aarch64-linux-gnu \
+#      g++-8-aarch64-linux-gnu \
       gcc-arm-none-eabi \
+      gcc-8-arm-linux-gnueabihf \
+      g++-8-arm-linux-gnueabihf \
+      gcc-9-arm-linux-gnueabihf \
+      g++-9-arm-linux-gnueabihf \
+      gcc-10-arm-linux-gnueabihf \
+      g++-10-arm-linux-gnueabihf \
+#      libc6-dev-arm64-cross \
+      libc6-dev-armhf-cross \
+      libc6-dev-armel-cross \
+      gawk \
       cmake \
       git \
       patch \
       wget \
       dialog \
       dbus \
+      jq \
       p7zip-full \
       zip \
       unzip \
+      pkg-config \
       procps \
       udev \
+      uuid-dev \
+      uuid-runtime \
       fakeroot \
       parted \
       debootstrap \
       libncurses5-dev \
       flex \
-      debian-archive-keyring \
       debian-keyring \
+      debian-archive-keyring \
       nano \
       sudo \
       u-boot-tools \
@@ -85,19 +111,17 @@ RUN set -x \
       python \
       python-dev \
       btrfs-progs \
-      binutils-arm-none-eabi \
-      libnewlib-arm-none-eabi \
-      libnewlib-dev \
-      libstdc++-arm-none-eabi-newlib \
-      u-boot-tools \
       e2fsprogs \
       kpartx \
-   && rm -rf /var/lib/apt/lists/* 
+      u-boot-tools \
+  &&  rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 
 RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && git clone https://github.com/pyavitz/debian-image-builder \
+   && git clone -b xfce https://github.com/pyavitz/rpi-img-builder xfce \
+   && git clone -b armhf https://github.com/pyavitz/rpi-img-builder armhf \
    && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
    && mkdir -p docker \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/docker/update \
