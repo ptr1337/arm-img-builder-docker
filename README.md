@@ -41,9 +41,9 @@ https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry
 If you got some problems at using for compiling the image or the docker container you should install the following on your host system:
 
 ```
-sudo apt install qemu-user-static #debian/ubuntu
+sudo apt install qemu-user-static binfmt-support #debian/ubuntu
 
-sudo pacman -S qemu aarch64-linux-gnu-gcc qemu-arch-extra #arch(aur must be maybe enabled)
+sudo pacman -S qemu-arch-extra #arch(aur must be maybe enabled)
 
 if there are still problems run the follwing command:
 
@@ -64,8 +64,8 @@ services:
 
   arm-img-builder:
 #    build: .  #uncomment for building 
-    image: pttrr/arm-img-builder:latest (for crosscompiling)
-#    image: pttrr/arm-img-builder:native (if building on a arm64 with docker)
+    image: pttrr/arm-img-builder:amd64 #crosscompiling on x64
+#    image: pttrr/arm-img-builder:arm64 #native or crosscompiling on a arm64
     privileged: true
     container_name: arm-img-builder
     stdin_open: true
@@ -78,8 +78,8 @@ services:
 ```
 #### Change the image tag to your needs. 
 
-**:latest is for cross compiling on your amd64 and arm64
-:native is for native compiling on arm64**
+**:amd64 is for cross compiling on x86_64 Machine
+:arm64 for compiling on a arm64 machine **
 
 ### Pulling and start the container
 
@@ -107,7 +107,6 @@ https://wiki.arm-image-builder.xyz/en/docker-addon
 Just run in the /build dir following commands (mostly they should do the commands if enterying the container but for going sure):
 
 ```
-make pull 	# Pulling latest updates from the builder
 make update # Updating scripts and the makefile
 ```
 Then enter in your wanted builder directory and follow the commands which you will find here:
