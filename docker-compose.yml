@@ -5,8 +5,8 @@ services:
 #    build:  #uncomment for building
 #      context: .
 #      dockerfile: Dockerfile.cross
-    image: pttrr/arm-img-builder # for crosscompiling
-#    image: pttrr/arm-img-builder:native # if building on a arm64 with docker
+    image: pttrr/arm-img-builder:amd64 # Cross-Compiling on x86_64 Machine
+#    image: pttrr/arm-img-builder:arm64 # Cross and native Compiling on arm64 Machine
     privileged: true
     cap_add:
       - MKNOD
