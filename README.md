@@ -15,8 +15,9 @@ Here you find the image on the docker-hub:
 
 We will provide two different tags: 
 
-> latest --> for cross compiling on amd64 or arm64
-> native --> for native compiling on arm64
+> amd64 --> for cross compiling on amd64 
+
+> arm64 --> for native compiling or cross compiling on arm64
 
 ### Installing docker and docker-compose
 
