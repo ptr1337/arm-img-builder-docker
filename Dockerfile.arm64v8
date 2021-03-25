@@ -33,15 +33,6 @@ RUN   apt-get update \
       autoconf \
       automake \
       autotools-dev \
-#      crossbuild-essential-arm64 \
-#      crossbuild-essential-armel \
-#      crossbuild-essential-armhf \
-#      gcc-10-aarch64-linux-gnu \
-#      g++-10-aarch64-linux-gnu \
-#      gcc-9-aarch64-linux-gnu \
-#      g++-9-aarch64-linux-gnu \
-#      gcc-8-aarch64-linux-gnu \
-#      g++-8-aarch64-linux-gnu \
       gcc-arm-none-eabi \
       gcc-8-arm-linux-gnueabihf \
       g++-8-arm-linux-gnueabihf \
@@ -49,7 +40,6 @@ RUN   apt-get update \
       g++-9-arm-linux-gnueabihf \
       gcc-10-arm-linux-gnueabihf \
       g++-10-arm-linux-gnueabihf \
-#      libc6-dev-arm64-cross \
       libc6-dev-armhf-cross \
       libc6-dev-armel-cross \
       gawk \
