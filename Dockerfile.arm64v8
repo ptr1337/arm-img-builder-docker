@@ -103,13 +103,13 @@ RUN   apt-get update \
       e2fsprogs \
       kpartx \
       u-boot-tools \
+      libelf-dev \
   &&  rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 
 RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && git clone https://github.com/pyavitz/debian-image-builder \
-   && git clone -b xfce https://github.com/pyavitz/rpi-img-builder xfce \
    && git clone -b armhf https://github.com/pyavitz/rpi-img-builder armhf \
    && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
    && mkdir -p docker \
