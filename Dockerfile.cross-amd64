@@ -18,9 +18,6 @@ RUN   apt-get update \
       autoconf \
       automake \
       autotools-dev \
-#      crossbuild-essential-arm64 \
-#      crossbuild-essential-armel \
-#      crossbuild-essential-armhf \
       gcc-10-aarch64-linux-gnu \
       g++-10-aarch64-linux-gnu \
       gcc-9-aarch64-linux-gnu \
@@ -98,13 +95,13 @@ RUN   apt-get update \
       e2fsprogs \
       kpartx \
       u-boot-tools \
+      libelf-dev \
   &&  rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 
 RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && git clone https://github.com/pyavitz/debian-image-builder \
-   && git clone -b xfce https://github.com/pyavitz/rpi-img-builder xfce \
    && git clone -b armhf https://github.com/pyavitz/rpi-img-builder armhf \
    && wget -cq --show-progress https://raw.githubusercontent.com/pyavitz/arm-img-builder/main/Makefile \
    && mkdir -p docker \
