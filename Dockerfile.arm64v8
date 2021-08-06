@@ -33,17 +33,7 @@ RUN   apt-get update \
       autoconf \
       automake \
       autotools-dev \
-      crossbuild-essential-arm64 \
-      crossbuild-essential-armel \
-      gcc-8-arm-linux-gnueabi \
-      gcc-9-arm-linux-gnueabi \
-      gcc-10-arm-linux-gnueabi \
-      gcc-8-aarch64-linux-gnu \
-      gcc-9-aarch64-linux-gnu \
-      gcc-10-aarch64-linux-gnu \
       gcc-arm-none-eabi \
-      gcc-9-aarch64-linux-gnu \
-      gcc-10-aarch64-linux-gnu \
       gcc-8-arm-linux-gnueabihf \
       g++-8-arm-linux-gnueabihf \
       gcc-9-arm-linux-gnueabihf \
@@ -52,11 +42,12 @@ RUN   apt-get update \
       g++-10-arm-linux-gnueabihf \
       libc6-dev-armhf-cross \
       libc6-dev-armel-cross \
-      python-distutils-extra \
-      python-is-python2 \
-      python3-setuptools \
-      python-setuptools \
-      python-dev-is-python2 \
+      clang-12 \
+      lld \
+      lld-12 \
+      clang \
+      llvm \
+      llvm-runtime \
       gawk \
       cmake \
       git \
@@ -116,9 +107,9 @@ RUN   apt-get update \
       python-dev \
       btrfs-progs \
       e2fsprogs \
+      xfsprogs \
       kpartx \
       u-boot-tools \
-      libelf-dev \
   &&  rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
