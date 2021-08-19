@@ -1,9 +1,9 @@
-FROM   ubuntu:hirsute:amd64
+FROM  ubuntu:hirsute:arm64
 
-ARG    DEBIAN_FRONTEND=noninteractive
+ARG   DEBIAN_FRONTEND=noninteractive
 
-RUN     apt-get update \
-        && apt-get install -y \
+RUN   apt-get update \
+   && apt-get install -y --no-install-recommends \
         systemd \
         systemd-sysv \
         systemd-container \
@@ -47,9 +47,11 @@ RUN     apt-get update \
         python3 \
         lz4 \
         lzop \
+	      sudo \
 	      e2fsprogs \
 	      fdisk \
         && rm -rf /var/lib/apt/lists/*
+
 
 WORKDIR /build
 
@@ -60,4 +62,4 @@ RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/build/docker/update \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/build/docker/function
 
-CMD     ["/bin/bash"]
+CMD  ["/bin/bash"]
