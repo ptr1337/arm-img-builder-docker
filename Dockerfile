@@ -1,4 +1,4 @@
-FROM   ubuntu:hirsute:amd64
+FROM   ubuntu:hirsute
 
 ARG    DEBIAN_FRONTEND=noninteractive
 
