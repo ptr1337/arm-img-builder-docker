@@ -1,57 +1,16 @@
-FROM  ubuntu:hirsute
+FROM   ubuntu:jammy
 
-ARG   DEBIAN_FRONTEND=noninteractive
+ARG    DEBIAN_FRONTEND=noninteractive
 
-RUN   apt-get update \
-   && apt-get install -y --no-install-recommends \
-        systemd \
-        systemd-sysv \
-        systemd-container \
-	      debian-keyring \
-	      debian-archive-keyring \
-	      perl \
-	      libelf-dev \
-        ca-certificates \
-        apt-transport-https \
-        binfmt-support \
-        dosfstools \
-        rsync \
-        wget \
-        lsof \
-        build-essential \
-        bison \
-        parted \
-        debootstrap \
-        kmod \
-        dbus \
-        udev \
-        procps \
-        nano \
-        zip \
-        unzip \
-        git \
-        bc \
-        curl \
-        dialog \
-        patch \
-        rsync \
-        cpio \
-        flex \
-        libssl-dev \
-        libncurses5-dev \
-        fakeroot \
-        swig \
-        distro-info-data \
-        lsb-release \
-        python \
-        python3 \
-        lz4 \
-        lzop \
-	      sudo \
-	      e2fsprogs \
-	      fdisk \
+RUN     apt-get update \
+        && apt-get install -y \
+        build-essential bison bc git dialog patch sudo \
+        dosfstools zip unzip qemu debootstrap qemu-user-static rsync \
+        kmod cpio flex libssl-dev libncurses5-dev parted fakeroot swig \
+        aria2 pv toilet figlet distro-info-data lsb-release xz-utils curl \
+        e2fsprogs btrfs-progs kpartx xfsprogs fdisk debian-archive-keyring \
+        debian-keyring make libelf-dev gcc-9 gcc-10 gcc-11 \
         && rm -rf /var/lib/apt/lists/*
-
 
 WORKDIR /build
 
@@ -62,4 +21,4 @@ RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/build/docker/update \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/build/docker/function
 
-CMD  ["/bin/bash"]
+CMD ["/bin/bash"]

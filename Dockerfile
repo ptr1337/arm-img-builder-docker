@@ -1,54 +1,17 @@
-FROM   ubuntu:hirsute
+FROM   ubuntu:jammy
 
 ARG    DEBIAN_FRONTEND=noninteractive
 
 RUN     apt-get update \
         && apt-get install -y \
-        systemd \
-        systemd-sysv \
-        systemd-container \
-	      debian-keyring \
-	      debian-archive-keyring \
-	      perl \
-	      libelf-dev \
-        ca-certificates \
-        apt-transport-https \
-        binfmt-support \
-        dosfstools \
-        rsync \
-        wget \
-        lsof \
-        build-essential \
-        bison \
-        parted \
-        debootstrap \
-        kmod \
-        dbus \
-        udev \
-        procps \
-        nano \
-        zip \
-        unzip \
-        git \
-        bc \
-        curl \
-        dialog \
-        patch \
-        rsync \
-        cpio \
-        flex \
-        libssl-dev \
-        libncurses5-dev \
-        fakeroot \
-        swig \
-        distro-info-data \
-        lsb-release \
-        python \
-        python3 \
-        lz4 \
-        lzop \
-	      e2fsprogs \
-	      fdisk \
+        build-essential bison bc git dialog patch dosfstools sudo \
+        zip unzip qemu debootstrap qemu-user-static rsync kmod cpio flex \
+        libssl-dev libncurses5-dev parted fakeroot swig aria2 pv toilet figlet \
+        distro-info-data lsb-release xz-utils curl e2fsprogs btrfs-progs kpartx \
+        debian-archive-keyring crossbuild-essential-armel crossbuild-essential-armhf \
+        gcc-9-arm-linux-gnueabi gcc-10-arm-linux-gnueabi gcc-11-arm-linux-gnueabi \
+        gcc-9-arm-linux-gnueabihf gcc-10-arm-linux-gnueabihf gcc-11-arm-linux-gnueabihf \
+        gcc-9 gcc-10 gcc-11 debian-keyring make libelf-dev xfsprogs fdisk \
         && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
@@ -60,4 +23,4 @@ RUN   git clone https://github.com/pyavitz/rpi-img-builder \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/build/docker/update \
    && wget -cq --show-progress -P docker https://raw.githubusercontent.com/pyavitz/arm-img-builder/build/docker/function
 
-CMD     ["/bin/bash"]
+CMD ["/bin/bash"]
