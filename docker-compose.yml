@@ -2,8 +2,8 @@ version: '3.6'
 services:
 
   arm-img-builder:
-    image: pttrr/arm-img-builder:arm64
-#    image: pttrr/arm-img-builder:amd64
+#    image: pttrr/arm-img-builder:arm64
+    image: pttrr/arm-img-builder:amd64
     privileged: true
     cap_add:
       - MKNOD
